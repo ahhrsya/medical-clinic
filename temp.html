@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CarePlus | Premium Healthcare SaaS</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1b70ee",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101722",
+                        "navy-900": "#0f172a",
+                        "sage-soft": "#f0fdf4",
+                        "peach-soft": "#fff7ed",
+                        "lavender-soft": "#f5f3ff",
+                    },
+                    fontFamily: {
+                        "display": ["Manrope", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-nav {
+            background: rgba(246, 247, 248, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+        }
+        .bento-shadow {
+            box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display text-navy-900 selection:bg-primary/20">
+<!-- Top Navigation -->
+<nav class="fixed top-0 left-0 right-0 z-50 glass-nav border-b border-primary/5">
+<div class="flex items-center justify-between px-6 h-16 max-w-7xl mx-auto">
+<div class="flex items-center gap-2">
+<div class="text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-3xl font-bold">medical_services</span>
+</div>
+<span class="text-navy-900 font-extrabold text-xl tracking-tight">CarePlus</span>
+</div>
+<button class="bg-primary text-white text-sm font-bold px-5 py-2.5 rounded-full shadow-lg shadow-primary/20 hover:scale-105 transition-transform">
+                Get Started
+            </button>
+</div>
+</nav>
+<main class="pt-24 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="px-6 py-12 text-center max-w-4xl mx-auto">
+<div class="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full mb-6">
+<span class="text-[10px] font-bold tracking-widest uppercase">New V2.0 Available</span>
+</div>
+<h1 class="text-navy-900 text-5xl font-extrabold leading-[1.1] tracking-[-0.04em] mb-6">
+                Elevate Your Healthcare <span class="text-primary">Operations</span>
+</h1>
+<p class="text-slate-500 text-lg leading-relaxed mb-10 max-w-xl mx-auto">
+                The ultimate B2B healthcare operating system. Streamline clinical workflows and focus on what matters most: your patients.
+            </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<button class="w-full sm:w-auto bg-primary text-white font-bold h-14 px-8 rounded-full text-lg shadow-xl shadow-primary/30">
+                    Request Demo
+                </button>
+<button class="w-full sm:w-auto bg-white border border-slate-200 text-navy-900 font-bold h-14 px-8 rounded-full text-lg">
+                    See Features
+                </button>
+</div>
+</section>
+<!-- Floating Dashboard Preview -->
+<section class="px-6 relative mb-20">
+<div class="relative max-w-4xl mx-auto">
+<div class="bg-white rounded-xl shadow-2xl overflow-hidden border border-slate-100 p-4 aspect-[4/3] sm:aspect-video relative">
+<img class="w-full h-full object-cover rounded-lg" data-alt="Modern healthcare analytics dashboard showing patient trends and clinical stats" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBH9x_yda1GSN84nPSHdb3anVQR8EDcocNrmvN4cc4GuNvXmIioHRW7SL-he9idXjxJwNc2YZPZRs57PkvEPVWlzxiM2vNAwYLtKzdZXLS-viaCCZ-7TvSoLJKl8iQRaBxJY2Ntq7cjFEccceVksSGex4uhh09jjNekASd6QCK4850jOmyK6XXnmvbLEO0lvZhUVqK3Vk9cQVS0O8OwpOPPxFh2LQ4vo6fOH4HAZa5fLWod6tJuMtn7SK5_Rjrrx6Ni-dVZiDHhr08D"/>
+<!-- Floating Elements (Glassmorphism) -->
+<div class="absolute top-8 -right-4 sm:right-8 glass-card p-4 rounded-2xl bento-shadow w-32 sm:w-48">
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-green-500 text-sm">trending_up</span>
+<span class="text-[10px] font-bold text-slate-400">EFFICIENCY</span>
+</div>
+<div class="text-xl font-bold text-navy-900">+24.8%</div>
+</div>
+<div class="absolute bottom-12 -left-4 sm:left-8 glass-card p-4 rounded-2xl bento-shadow w-40 sm:w-56">
+<div class="flex items-center gap-3">
+<div class="size-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-lg">notifications</span>
+</div>
+<div>
+<div class="text-[10px] font-bold text-slate-400">ALERTS</div>
+<div class="text-xs font-semibold">3 New Consults</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Features Bento Grid -->
+<section class="px-6 py-20 bg-white">
+<div class="max-w-4xl mx-auto">
+<div class="mb-12">
+<h2 class="text-navy-900 text-3xl font-extrabold tracking-tight mb-4">Built for Clinical Excellence</h2>
+<p class="text-slate-500">Every tool you need to run a high-performance medical practice.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Large Box: Patient Tracking -->
+<div class="bg-sage-soft p-8 rounded-xl bento-shadow flex flex-col justify-between min-h-[320px] md:col-span-2">
+<div>
+<div class="size-12 bg-white rounded-2xl flex items-center justify-center text-green-600 mb-6 bento-shadow">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+<h3 class="text-2xl font-bold mb-3">Patient Tracking</h3>
+<p class="text-slate-600 max-w-md">Monitor patient journeys across departments in real-time. Automated status updates for the entire care team.</p>
+</div>
+<div class="mt-8 flex gap-2">
+<div class="bg-white/60 px-4 py-2 rounded-full text-xs font-bold text-green-800">Live Status</div>
+<div class="bg-white/60 px-4 py-2 rounded-full text-xs font-bold text-green-800">Auto-CheckIn</div>
+</div>
+</div>
+<!-- Medium Box: Secure Messaging -->
+<div class="bg-peach-soft p-8 rounded-xl bento-shadow flex flex-col justify-between min-h-[300px]">
+<div>
+<div class="size-12 bg-white rounded-2xl flex items-center justify-center text-orange-500 mb-6 bento-shadow">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Secure Messaging</h3>
+<p class="text-slate-600 text-sm leading-relaxed">HIPAA-compliant communication for teams. Encrypted file sharing and direct provider consultations.</p>
+</div>
+<div class="mt-6">
+<img class="rounded-lg opacity-40 grayscale" data-alt="Secure chat interface showing encrypted messaging bubbles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBryoRuHDvzF-Ci1Ry87bttdFDnBqSVG5mZ0Doot5i3uuvdKjImG5eJkirPZSxV4ELrrkQmcrbuEvloWX-zQaFYNBFeLJGcPxkz9xmebQEw4p8XaJUyaAcdS-aDTAn0_aC5prCEnT-HEBpUCufiZaZ41PAhZ9jw89X5CihdYcajWicPBclvIrCrSxnMvP0JFB6DslmACk5KTFjD_8RkDFfY7t4uHmrhX1EOuWD4cK8rcAwNS_4pDPpriM6wl9X_GA5M863Xm4AOqsXU"/>
+</div>
+</div>
+<!-- Medium Box: Analytics -->
+<div class="bg-lavender-soft p-8 rounded-xl bento-shadow flex flex-col justify-between min-h-[300px]">
+<div>
+<div class="size-12 bg-white rounded-2xl flex items-center justify-center text-indigo-600 mb-6 bento-shadow">
+<span class="material-symbols-outlined">insights</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Insights &amp; ROI</h3>
+<p class="text-slate-600 text-sm leading-relaxed">Deep dive into operational metrics. Track provider efficiency and patient satisfaction scores automatically.</p>
+</div>
+<div class="mt-6 flex items-end justify-between h-16">
+<div class="w-4 bg-indigo-200 rounded-t-full h-8"></div>
+<div class="w-4 bg-indigo-300 rounded-t-full h-12"></div>
+<div class="w-4 bg-indigo-400 rounded-t-full h-10"></div>
+<div class="w-4 bg-indigo-500 rounded-t-full h-16"></div>
+<div class="w-4 bg-indigo-600 rounded-t-full h-14"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="px-6 py-16">
+<div class="max-w-4xl mx-auto rounded-xl overflow-hidden relative">
+<div class="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#1b70ee]"></div>
+<div class="relative p-10 md:p-16 text-center">
+<h2 class="text-white text-3xl md:text-4xl font-extrabold mb-6">Ready to transform your practice?</h2>
+<p class="text-slate-300 mb-10 text-lg max-w-lg mx-auto">Join 500+ clinics scaling their operations with CarePlus healthcare infrastructure.</p>
+<button class="bg-white text-navy-900 font-bold px-10 py-4 rounded-full text-lg shadow-xl hover:scale-105 transition-transform">
+                        Get Started Now
+                    </button>
+<p class="text-white/40 text-sm mt-6">Free 14-day trial. No credit card required.</p>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-navy-900 pt-20 pb-12 px-6">
+<div class="max-w-4xl mx-auto">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-2 md:col-span-1">
+<div class="flex items-center gap-2 text-white mb-6">
+<span class="material-symbols-outlined text-primary">medical_services</span>
+<span class="font-extrabold text-xl tracking-tight">CarePlus</span>
+</div>
+<p class="text-slate-400 text-sm leading-relaxed">
+                            Building the future of healthcare operations with precision and care.
+                        </p>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Product</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Solutions</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Pricing</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Integrations</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Company</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">About</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Case Studies</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="text-white font-bold mb-6">Legal</h4>
+<ul class="space-y-4 text-slate-400 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">HIPAA Compliance</a></li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-xs">© 2024 CarePlus Healthcare SaaS. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-600 hover:text-white cursor-pointer transition-colors">language</span>
+<span class="material-symbols-outlined text-slate-600 hover:text-white cursor-pointer transition-colors">mail</span>
+</div>
+</div>
+</div>
+</footer>
+</main>
+</body></html>
