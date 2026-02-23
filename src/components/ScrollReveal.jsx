@@ -16,21 +16,42 @@ export const ScrollReveal = ({
     textClassName = '',
     rotationEnd = 'bottom bottom',
     wordAnimationEnd = 'bottom bottom',
+    start = 'top top',
     end = '+=100%',
     as: Component = 'h2' // Allow polymorphic elements, default to h2
 }) => {
     const containerRef = useRef(null);
 
     const splitText = useMemo(() => {
-        const text = typeof children === 'string' ? children : '';
-        return text.split(/(\s+)/).map((word, index) => {
-            if (word.match(/^\s+$/)) return word;
-            return (
-                <span className="inline-block word" key={index}>
-                    {word}
-                </span>
-            );
-        });
+        const processTextNode = (textStr, indexPrefix) => {
+            return textStr.split(/(\s+)/).map((word, index) => {
+                if (word.match(/^\s+$/)) return word;
+                return (
+                    <span className="inline-block word align-middle" key={`${indexPrefix}-${index}`}>
+                        {word}
+                    </span>
+                );
+            });
+        };
+
+        if (typeof children === 'string') {
+            return processTextNode(children, 'text');
+        }
+
+        if (Array.isArray(children)) {
+            return children.map((child, i) => {
+                if (typeof child === 'string') {
+                    return processTextNode(child, `txt-${i}`);
+                }
+                return (
+                    <span className="inline-block word icon-word align-middle mx-2 md:mx-4" key={`node-${i}`}>
+                        {child}
+                    </span>
+                );
+            });
+        }
+
+        return children;
     }, [children]);
 
     useEffect(() => {
@@ -49,14 +70,15 @@ export const ScrollReveal = ({
                     trigger: pinRef?.current || el,
                     pin: !!pinRef,
                     scroller,
-                    start: 'top top',
+                    start: start,
                     end: end,
                     scrub: true
                 }
             }
         );
 
-        const wordElements = el.querySelectorAll('.word');
+        const wordElements = el.querySelectorAll('.word:not(.icon-word)');
+        const iconElements = el.querySelectorAll('.icon-word');
 
         gsap.fromTo(
             wordElements,
@@ -68,7 +90,7 @@ export const ScrollReveal = ({
                 scrollTrigger: {
                     trigger: pinRef?.current || el,
                     scroller,
-                    start: 'top top',
+                    start: start,
                     end: end,
                     scrub: true
                 }
@@ -86,7 +108,7 @@ export const ScrollReveal = ({
                     scrollTrigger: {
                         trigger: pinRef?.current || el,
                         scroller,
-                        start: 'top top',
+                        start: start,
                         end: end,
                         scrub: true
                     }
@@ -94,10 +116,30 @@ export const ScrollReveal = ({
             );
         }
 
+        // Independent pop-in animations for icons
+        iconElements.forEach((icon, i) => {
+            gsap.fromTo(
+                icon,
+                { scale: 0, opacity: 0 },
+                {
+                    scale: 1,
+                    opacity: 1,
+                    ease: 'back.out(2)',
+                    duration: 0.5,
+                    scrollTrigger: {
+                        trigger: icon,
+                        scroller,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
         return () => {
             ScrollTrigger.getAll().forEach(trigger => trigger.kill());
         };
-    }, [scrollContainerRef, pinRef, enableBlur, baseRotation, baseOpacity, rotationEnd, wordAnimationEnd, blurStrength, end]);
+    }, [scrollContainerRef, pinRef, enableBlur, baseRotation, baseOpacity, blurStrength, start, end]);
 
     return (
         <Component ref={containerRef} className={containerClassName}>

@@ -8,10 +8,10 @@ export const services = [
 ];
 
 export const doctors = [
-    { id: 1, name: 'Dr. Sarah Smith', specialty: 'General Practitioner', rating: 4.9, image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300' },
-    { id: 2, name: 'Dr. James Wilson', specialty: 'Cardiologist', rating: 4.8, image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300' },
-    { id: 3, name: 'Dr. Emily Chen', specialty: 'Pediatrician', rating: 5.0, image: 'https://images.unsplash.com/photo-1594824436998-ef2286ed577a?auto=format&fit=crop&q=80&w=300&h=300' },
-    { id: 4, name: 'Dr. Michael Brown', specialty: 'Orthopedist', rating: 4.7, image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300' }
+    { id: 1, name: 'Dr. Aisha Al-Hassan', specialty: 'General Practitioner', rating: 4.9, image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?auto=format&fit=crop&q=80&w=300&h=300' },
+    { id: 2, name: 'Dr. Yusuf Ibrahim', specialty: 'Cardiologist', rating: 4.8, image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=300&h=300' },
+    { id: 3, name: 'Dr. Fatima Zein', specialty: 'Pediatrician', rating: 5.0, image: 'https://images.unsplash.com/photo-1594824436998-ef2286ed577a?auto=format&fit=crop&q=80&w=300&h=300' },
+    { id: 4, name: 'Dr. Omar Farooq', specialty: 'Orthopedist', rating: 4.7, image: 'https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=300&h=300' }
 ];
 
 export const testimonials = [
@@ -21,7 +21,7 @@ export const testimonials = [
 ];
 
 export const mockAppointments = [
-    { id: 101, doctorId: 1, doctorName: 'Dr. Sarah Smith', serviceId: 1, serviceName: 'Primary Care', date: '2023-11-05', time: '10:00 AM', status: 'Completed', location: 'Room 302' },
-    { id: 102, doctorId: 2, doctorName: 'Dr. James Wilson', serviceId: 2, serviceName: 'Cardiology', date: '2023-10-24', time: '14:30 PM', status: 'Pending', location: 'Room 105' },
-    { id: 103, doctorId: 4, doctorName: 'Dr. Michael Brown', serviceId: 5, serviceName: 'Orthopedics', date: '2023-09-12', time: '09:00 AM', status: 'Cancelled', location: 'Room 410' }
+    { id: 101, doctorId: 1, doctorName: 'Dr. Aisha Al-Hassan', serviceId: 1, serviceName: 'Primary Care', date: '2023-11-05', time: '10:00 AM', status: 'Completed', location: 'Room 302' },
+    { id: 102, doctorId: 2, doctorName: 'Dr. Yusuf Ibrahim', serviceId: 2, serviceName: 'Cardiology', date: '2023-10-24', time: '14:30 PM', status: 'Pending', location: 'Room 105' },
+    { id: 103, doctorId: 4, doctorName: 'Dr. Omar Farooq', serviceId: 5, serviceName: 'Orthopedics', date: '2023-09-12', time: '09:00 AM', status: 'Cancelled', location: 'Room 410' }
 ];

@@ -1,39 +1,152 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { ScrollReveal } from '../components/ScrollReveal';
+import hero1Img from '../assets/hero-1.jpg';
+import hero2Img from '../assets/hero-2.jpg';
+import hero3Img from '../assets/hero-3.jpg';
+import aboutImg from '../assets/about.jpg';
+import section3Img from '../assets/section-3.jpg';
+import doctor1Img from '../assets/doctor-1.jpg';
+import doctor2Img from '../assets/doctor-2.jpg';
+import doctor3Img from '../assets/doctor-3.jpg';
+import doctor4Img from '../assets/doctor-4.jpg';
+import community1Img from '../assets/community-1.jpg';
+import community2Img from '../assets/community-2.jpg';
+import community3Img from '../assets/community-3.jpg';
+import community4Img from '../assets/community-4.jpg';
 
 export const Landing = () => {
     const philosophySectionRef = useRef(null);
+    const expertsCarouselRef = useRef(null);
+    const testimonialsRef = useRef(null);
+    const [isTestimonialsHovered, setIsTestimonialsHovered] = useState(false);
+    const [activeSpecialty, setActiveSpecialty] = useState(0);
+    const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
+
+    const heroSlides = [hero1Img, hero2Img, hero3Img];
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setCurrentHeroSlide((prev) => (prev + 1) % heroSlides.length);
+        }, 5000);
+        return () => clearInterval(timer);
+    }, [heroSlides.length]);
+
+    const specialtiesData = [
+        {
+            title: "Longevity",
+            image: aboutImg,
+            description: "Advanced diagnostics and preventative genomics designed to extend your healthspan. Our protocols anticipate future needs."
+        },
+        {
+            title: "Aesthetics",
+            image: doctor2Img,
+            description: "Refine your natural beauty with world-class, non-invasive procedures tailored to your unique anatomical structure."
+        },
+        {
+            title: "Concierge",
+            image: section3Img,
+            description: "Unmatched 24/7 medical access. We manage your health globally, ensuring peace of mind wherever you are."
+        },
+        {
+            title: "Diagnostics",
+            image: doctor4Img,
+            description: "State-of-the-art imaging and biomarker analysis to detect the invisible and treat the preventable."
+        },
+        {
+            title: "Preventative Care",
+            image: doctor3Img,
+            description: "Proactive, holistic regimens focusing on total body optimization and hormonal balance."
+        }
+    ];
+
+    const scrollExperts = (direction) => {
+        if (expertsCarouselRef.current) {
+            const scrollAmount = 450; // card w-[420px] + gap-8 [32px]
+            expertsCarouselRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
+
+    const testimonialsData = [
+        {
+            quote: "Being able to access a specialist without waiting weeks has been a game-changer. Saha Medical's service is absolutely top-notch.",
+            name: "Daniel Kardashian",
+            location: "Los Angeles, CA",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBkyNRRMNagTr1Cr9jCveI_OzWjN2iWGCqeglIEsLwlUlrm25s8iiLaS3SLQYxumeS5tg8LLGJFv54LbCWdf2UnKaLYtUVTrYAs4UmO8PKiVHFN75wWcARIMlvW0OWVhzU5Nb24vzhmOSSABMy13l35XH2vj2ANSdl0Z7VgdkhcTdvrbPs0xIz09mzTkj6gqmjlRiqih29XoyDPlyWrJXUG8HC8ujnmBdAk7VDNubIKWUCVz8ZIWc-2F8lUnXlYYag3aFysytbJtLQ"
+        },
+        {
+            quote: "The personalized longevity protocols make me feel more in control of my future. Truly a lifesaver in every sense.",
+            name: "Megan Fox",
+            location: "Washington, NY",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCjNc-wRRfpaovjug2v99Ycu9S5uSNSReXh4Hci9gBfGmnYg4LE1a1DXuFfHHRe-XOwssycSAIZo2nLZoOcY1LeWGjqBZkU9NdDlHo1_k__GDo17juW5LAtcSzmvGzWOXtitmpuiWCOStfyyhPCfFNrvVG1jptXoEe7Bu6Hcw5cmkaA2kM6f3SsNnAcIeKR3ZGUJRk7G21n9XDQnX_BBE37oFnkQqjaVvXEfZCw4tM6lbEOFgICBTBWAhCP19i9cNW7rlOtVHqetoY"
+        },
+        {
+            quote: "Exceptional quality across the board. The discretion and proficiency here will save you both time and worry.",
+            name: "Jessica Mercedes",
+            location: "CEO @ Scars can",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCd5z1hq5PnsDUSniuqRWx2dikXBF7bxisEzyJf9nkQDbKc9bT2Ctbqfhj-evzpSXSEEqBBHhxTwNBxjR4OXausMqVt5JiFwmkwmqvObUNpa33AxGOLuDSQloyr-MB0l1gvzt3MiIGp6qDX-6JvsHJWDAbe1NFcBMApJl_dAS934a-910EG8hTe9c4ZNp1acveR2w6EJ8fLicynx0_yjEQfS9VkFI7kfsXlvFbZDIVMOYFhKZ6o5Lus-KT8MvyMfVIxY_jWDNvL-xw"
+        },
+        {
+            quote: "I've never experienced medical attention with this degree of precision. It feels like having a private research institute dedicated solely to me.",
+            name: "Alexandra Sterling",
+            location: "London, UK",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBbzoirvAE6tKBRDVx0Tfl-VBM9hE23WVg_9PndZ5tod4UO0_5B_NfHke-zkGb5IMKgYMzaVXOFW3nuiS5EFqjHDv000VQJbwhQb8BScNN5TQCIJAojgSTfQ2JCSNPxx5ma2v0Y7fnLYMOxyCt3kKU3dyggQ9lgouGZYlAeP-IVxb4E19shUAHf7dzgrUTj7HdauZmC5402Z7qD7Fgn0LeC7UNm4bUP2NLfNwI0qhmf_Lna-0OefqKY1-OS-mdTERv7TwI88IhaMbQ"
+        },
+        {
+            quote: "From the first consultation, the frictionless concierge experience completely changed my perspective on preventative healthcare.",
+            name: "Julian Hargrove",
+            location: "Dubai, UAE",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuD-2kfYV84N9qWrbj5Mkyz81DOZSCjbVW9C_I7u8iv5yihRbccdM6cLTksjKWmxtK9lBHS185QhTkPjO5XjR29FzC3LThXrfnrY6-KBtO9hjMq6Ckt_fqo0mw2Wzlcb6d4TI8v6HG-hcIsKRzXn_q0yON178JO4VWN_Y-JJpfgpKsZBDd2F2ffFrP26YUKSyQMWkQ31tuUw_NIy8ETGuXvbeRtaAszPQlg8IgqT2s_KFKLZAJNbfg3OmB_YyiuyKrlggY_-zjukGro"
+        },
+        {
+            quote: "The seamless integration of world-class experts into a unified, actionable health strategy is unparalleled. Breathtaking service.",
+            name: "Elena Rostova",
+            location: "Geneva, CH",
+            image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAtMaenr1pEd7mz66asqnPlfz-18K06fXkuuW0uSk7UJQb0uQPOdx1P3CWHGPBGrc5iKWHzzleMCGI73xdOiEndZhNj9AG9kSGXYDzNDFXEE55nFlASRo0Y9DgVHhjJmt-WV7VWTsCwcZ0lG78jPQLbwBde_v1giQDRZs3WsF2wpDdOoiBcdI5fqp_7tzHZZfBu3gOt-k_4zN-cH-M2CZID33Fv035DbfUu2Uld7gbE37X4yCzN_Qg8vMbIQ8E5K7uR0FxI4DLotw4"
+        }
+    ];
+
     return (
         <>
             <div className="relative min-h-screen flex flex-col">
-                <div className="absolute inset-0 z-0">
-                    <img alt="High-end medical interaction" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtMaenr1pEd7mz66asqnPlfz-18K06fXkuuW0uSk7UJQb0uQPOdx1P3CWHGPBGrc5iKWHzzleMCGI73xdOiEndZhNj9AG9kSGXYDzNDFXEE55nFlASRo0Y9DgVHhjJmt-WV7VWTsCwcZ0lG78jPQLbwBde_v1giQDRZs3WsF2wpDdOoiBcdI5fqp_7tzHZZfBu3gOt-k_4zN-cH-M2CZID33Fv035DbfUu2Uld7gbE37X4yCzN_Qg8vMbIQ8E5K7uR0FxI4DLotw4" />
-                    <div className="absolute inset-0 bg-black/40"></div>
+                <div className="absolute inset-0 z-0 bg-black">
+                    {heroSlides.map((slide, index) => (
+                        <img
+                            key={index}
+                            alt={`Luxury Medical Facility ${index + 1}`}
+                            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[1500ms] ease-in-out ${currentHeroSlide === index ? 'opacity-80' : 'opacity-0'}`}
+                            src={slide}
+                        />
+                    ))}
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
                 </div>
-                <nav className="relative z-[100] w-full">
-                    <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                        <div className="flex justify-between items-center h-24">
-                            <div className="flex items-center">
-                                <span className="text-2xl font-normal tracking-[0.3em] text-white uppercase">VVIP<span className="text-accent ml-1">.</span></span>
-                            </div>
-                            <div className="hidden md:flex items-center space-x-12 text-[11px] font-normal tracking-[0.2em] uppercase text-white/80">
-                                <a className="hover:text-white transition-colors" href="#">Specialties</a>
-                                <a className="hover:text-white transition-colors" href="#">Experts</a>
-                                <a className="hover:text-white transition-colors" href="#">Concierge</a>
-                                <a className="hover:text-white transition-colors" href="#">Locations</a>
-                            </div>
-                            <div className="flex items-center">
-                                <a className="bg-primary text-white px-8 py-3 text-[11px] font-normal tracking-[0.2em] uppercase hover:bg-primary/90 transition-all rounded-full" href="#booking">
-                                    Request Access
-                                </a>
-                            </div>
+                <div className="absolute top-6 left-0 right-0 z-[100] px-4 md:px-8">
+                    <nav className="max-w-[1280px] mx-auto bg-white rounded-full py-2.5 pl-8 pr-2 flex justify-between items-center shadow-lg">
+                        <div className="flex items-center">
+                            <span className="text-[22px] font-semibold text-[#294cbe] tracking-tight flex items-start gap-0.5">
+                                Saha Medical
+                                <span className="text-slate-400 text-[10px] font-normal mt-1 border border-slate-300 rounded-full w-3 h-3 flex items-center justify-center">R</span>
+                            </span>
                         </div>
-                    </div>
-                </nav>
+                        <div className="hidden md:flex items-center space-x-8 text-[13px] font-medium text-slate-500">
+                            <a className="hover:text-slate-900 transition-colors" href="#">About</a>
+                            <a className="hover:text-slate-900 transition-colors" href="#">Specialties</a>
+                            <a className="hover:text-slate-900 transition-colors" href="#">Our Experts</a>
+                            <a className="hover:text-slate-900 transition-colors" href="#">Careers</a>
+                        </div>
+                        <div className="flex items-center">
+                            <a className="bg-[#294cbe] text-white px-6 py-2.5 text-[13px] font-medium tracking-wide hover:bg-[#1a348c] transition-all rounded-full flex items-center gap-2" href="#booking">
+                                Schedule Visit <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            </a>
+                        </div>
+                    </nav>
+                </div>
                 <header className="relative flex-grow flex items-center z-10">
                     <div className="max-w-[1440px] mx-auto px-8 lg:px-16 w-full pb-20">
                         <div className="max-w-4xl">
-                            <h1 className="text-6xl md:text-7xl lg:text-8xl font-normal leading-[1.05] mb-8 text-white">
+                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-normal leading-[1.05] mb-8 text-white">
                                 Exquisite healthcare,<br />redefined for you.
                             </h1>
                             <p className="text-xl md:text-2xl text-white/90 font-normal mb-12 max-w-xl leading-relaxed">
@@ -49,57 +162,48 @@ export const Landing = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-16 right-8 lg:right-16 flex flex-col md:flex-row gap-8 items-end">
-                        <div className="bg-white p-7 rounded-[2.5rem] w-80 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-transform hover:-translate-y-1 duration-500">
-                            <div className="flex items-start justify-between mb-8">
-                                <div className="w-12 h-12 rounded-2xl bg-accent/10 flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-accent text-3xl font-light">support_agent</span>
-                                </div>
-                                <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-100">
-                                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 status-pulse"></span>
-                                    <span className="text-[10px] uppercase tracking-widest text-emerald-600 font-bold">Currently Available</span>
-                                </div>
-                            </div>
-                            <div>
-                                <h4 className="text-xl font-normal text-primary mb-1">Elite Concierge</h4>
-                                <p className="text-[10px] text-slate-400 tracking-[0.2em] uppercase mb-4">24/7 Priority Channel</p>
-                                <div className="h-px w-full bg-slate-100 mb-4"></div>
-                                <p className="text-xs text-slate-600 leading-relaxed italic">"Your medical journey, orchestrated with absolute precision."</p>
-                            </div>
+
+                    {/* Floating Socials and Slider Controls */}
+                    <div className="absolute bottom-10 right-8 lg:bottom-16 lg:right-16 flex flex-col items-end gap-12 z-[100] text-white">
+                        {/* Social Icons Stack */}
+                        <div className="flex flex-col gap-4">
+                            <a href="#" aria-label="X (Twitter)" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white/80 hover:bg-white hover:text-primary hover:border-white transition-all backdrop-blur-sm">
+                                <svg className="w-[14px] h-[14px] fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
+                            </a>
+                            <a href="#" aria-label="Instagram" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white/80 hover:bg-white hover:text-primary hover:border-white transition-all backdrop-blur-sm">
+                                <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" /></svg>
+                            </a>
+                            <a href="#" aria-label="Facebook" className="w-10 h-10 rounded-full border border-white/30 flex items-center justify-center text-white/80 hover:bg-white hover:text-primary hover:border-white transition-all backdrop-blur-sm">
+                                <svg className="w-[18px] h-[18px] fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /></svg>
+                            </a>
                         </div>
-                        <div className="bg-white p-7 rounded-[2.5rem] w-80 shadow-[0_20px_50px_rgba(0,0,0,0.15)] transition-transform hover:-translate-y-1 duration-500">
-                            <div className="relative h-24 mb-6 opacity-90">
-                                <svg className="w-full h-full stroke-accent/40 fill-none" viewBox="0 0 200 100">
-                                    <path d="M20,50 Q60,20 100,50 T180,50" strokeDasharray="2 2" strokeWidth="0.5"></path>
-                                    <circle className="fill-accent" cx="100" cy="50" r="1.5"></circle>
-                                    <circle className="fill-accent" cx="40" cy="30" r="1.5"></circle>
-                                    <circle className="fill-accent" cx="160" cy="70" r="1.5"></circle>
-                                </svg>
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="material-symbols-outlined text-accent/20 text-6xl font-thin">public</span>
-                                </div>
-                            </div>
-                            <div className="space-y-3">
-                                <p className="text-[10px] text-slate-400 uppercase tracking-[0.2em] mb-4">Global Reach</p>
-                                <div className="flex items-center justify-between text-primary">
-                                    <span className="text-sm font-light tracking-wide">Dubai</span>
-                                    <span className="text-[10px] text-accent font-bold tracking-tighter">HQ</span>
-                                </div>
-                                <div className="flex items-center justify-between text-primary">
-                                    <span className="text-sm font-light tracking-wide">London</span>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-tighter">Harley St.</span>
-                                </div>
-                                <div className="flex items-center justify-between text-primary">
-                                    <span className="text-sm font-light tracking-wide">New York</span>
-                                    <span className="text-[10px] text-slate-400 uppercase tracking-tighter">5th Ave.</span>
-                                </div>
+
+                        {/* Slider Progress Info */}
+                        <div className="flex items-center gap-4 text-white">
+                            <span className="text-sm font-medium tracking-widest relative z-10 mr-1">
+                                0{currentHeroSlide + 1} / 0{heroSlides.length}
+                            </span>
+                            <div className="flex items-center gap-2">
+                                {heroSlides.map((_, i) => (
+                                    <div
+                                        key={i}
+                                        className={`h-[2px] rounded-full overflow-hidden bg-white/40 transition-all duration-500 ${currentHeroSlide === i ? 'w-10' : 'w-4'}`}
+                                    >
+                                        {currentHeroSlide === i && (
+                                            <div
+                                                className="h-full bg-white"
+                                                style={{ animation: 'fillProgress 5s linear forwards' }}
+                                            ></div>
+                                        )}
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     </div>
                 </header>
             </div>
 
-            <section ref={philosophySectionRef} className="py-32 lg:py-56 bg-white">
+            <section ref={philosophySectionRef} className="py-32 lg:py-48 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="mb-20">
                         <span className="text-accent text-xs font-normal tracking-[0.3em] uppercase block mb-4">Our Philosophy</span>
@@ -108,23 +212,35 @@ export const Landing = () => {
                             baseRotation={2}
                             blurStrength={8}
                             containerClassName="max-w-5xl"
-                            textClassName="font-sans text-5xl md:text-6xl lg:text-7xl font-normal text-primary leading-[1.1] tracking-tight"
-                            pinRef={philosophySectionRef}
-                            end="+=150%"
+                            textClassName="font-sans text-5xl md:text-6xl lg:text-7xl font-normal text-primary leading-[1.1] tracking-tight inline-block"
+                            start="top 90%"
+                            end="bottom 40%"
                         >
-                            True luxury is the absence of friction. We strip away the unnecessary, leaving only clarity, precision, and profound care.
+                            {'True luxury is the absence of friction. '}
+                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-emerald-500 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
+                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">workspace_premium</span>
+                            </span>
+                            {' We strip away the unnecessary, '}
+                            <span className="inline-flex items-center justify-center w-[80px] h-[50px] md:w-[100px] md:h-[60px] bg-blue-600 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
+                                <span className="material-symbols-outlined text-[28px] md:text-[36px]">filter_alt</span>
+                            </span>
+                            {' leaving only clarity, precision, '}
+                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-rose-500 rounded-[20px] md:rounded-[24px] text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3 rotate-6">
+                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">favorite</span>
+                            </span>
+                            {' and profound care.'}
                         </ScrollReveal>
                     </div>
                     <div className="flex flex-col lg:flex-row gap-12 items-end">
                         <div className="w-full lg:w-3/4">
                             <div className="rounded-[2rem] overflow-hidden aspect-[16/9] shadow-2xl">
-                                <img alt="World-class medical team in a luxury clinical setting" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbzoirvAE6tKBRDVx0Tfl-VBM9hE23WVg_9PndZ5tod4UO0_5B_NfHke-zkGb5IMKgYMzaVXOFW3nuiS5EFqjHDv000VQJbwhQb8BScNN5TQCIJAojgSTfQ2JCSNPxx5ma2v0Y7fnLYMOxyCt3kKU3dyggQ9lgouGZYlAeP-IVxb4E19shUAHf7dzgrUTj7HdauZmC5402Z7qD7Fgn0LeC7UNm4bUP2NLfNwI0qhmf_Lna-0OefqKY1-OS-mdTERv7TwI88IhaMbQ" />
+                                <img alt="World-class medical team in a luxury clinical setting" className="w-full h-full object-cover" src={aboutImg} />
                             </div>
                         </div>
                         <div className="w-full lg:w-1/4 pb-4">
                             <div className="max-w-xs">
                                 <p className="text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
-                                    The Art of Subtraction. VVIP was born from a vision to simplify healthcare and make it seamless for the world's most discerning individuals. By removing administrative complexity, we return your most valuable asset: time.
+                                    The Art of Subtraction. Saha Medical was born from a vision to simplify healthcare and make it seamless for the world's most discerning individuals. By removing administrative complexity, we return your most valuable asset: time.
                                 </p>
                             </div>
                         </div>
@@ -132,7 +248,7 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-56 bg-white">
+            <section className="py-32 lg:py-48 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="text-center mb-24">
                         <span className="text-accent text-sm font-normal tracking-[0.4em] uppercase block mb-6">Core Specialties</span>
@@ -141,33 +257,34 @@ export const Landing = () => {
                     <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
                         <div className="flex-1 w-full lg:w-auto order-2 lg:order-1 flex justify-center lg:justify-end">
                             <ul className="space-y-8 text-xl lg:text-2xl font-normal text-primary w-full max-w-xs lg:text-right">
-                                <li className="flex items-center lg:justify-end gap-4 cursor-pointer">
-                                    <span className="w-2 h-2 rounded-full bg-primary"></span>
-                                    <span className="tracking-tight">Longevity</span>
-                                </li>
-                                <li className="flex items-center lg:justify-end gap-4 text-slate-300 cursor-pointer hover:text-primary transition-colors">
-                                    <span className="tracking-tight">Aesthetics</span>
-                                </li>
-                                <li className="flex items-center lg:justify-end gap-4 text-slate-300 cursor-pointer hover:text-primary transition-colors">
-                                    <span className="tracking-tight">Concierge</span>
-                                </li>
-                                <li className="flex items-center lg:justify-end gap-4 text-slate-300 cursor-pointer hover:text-primary transition-colors">
-                                    <span className="tracking-tight">Diagnostics</span>
-                                </li>
-                                <li className="flex items-center lg:justify-end gap-4 text-slate-300 cursor-pointer hover:text-primary transition-colors">
-                                    <span className="tracking-tight">Preventative Care</span>
-                                </li>
+                                {specialtiesData.map((item, index) => (
+                                    <li
+                                        key={index}
+                                        onMouseEnter={() => setActiveSpecialty(index)}
+                                        className={`flex items-center lg:justify-end gap-4 cursor-pointer transition-colors ${activeSpecialty === index ? 'text-primary' : 'text-slate-300 hover:text-slate-400'}`}
+                                    >
+                                        {activeSpecialty === index && <span className="w-2 h-2 rounded-full bg-primary hidden lg:inline-block"></span>}
+                                        <span className="tracking-tight">{item.title}</span>
+                                    </li>
+                                ))}
                             </ul>
                         </div>
                         <div className="flex-[1.5] order-1 lg:order-2 w-full max-w-[600px]">
-                            <div className="aspect-[3.5/4.5] w-full rounded-[40px] overflow-hidden shadow-2xl">
-                                <img alt="High-end Medical Lifestyle" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiP77o8mzgii1vx7oUF8IN7lbQcfCIw5xl_s9w0QYKJjdZ3SVe2LdYB92axUEkLbNwfHoS3Qz50VNeM6s2JNeWJMPF_jxgacNfzdXov8ES9ayik7i5KCutneOL1Ba51xhC160PC3kJmVKLBMgFgN7G_k6qnDvyaltaLV_FNpjzV6CoTYsZvbl3Z0OY_34k1tnCx3aW7GsZrc2kOFM8-JyhOhWZ_1XJWp2lFsFo8xVxIb0HSaL-J1XcP1Q8HSEj3UrfJjxOMmEx390" />
+                            <div className="aspect-[3.5/4.5] w-full rounded-[40px] overflow-hidden shadow-2xl relative">
+                                {specialtiesData.map((item, index) => (
+                                    <img
+                                        key={index}
+                                        alt={item.title}
+                                        className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ${activeSpecialty === index ? 'opacity-100 relative' : 'opacity-0'}`}
+                                        src={item.image}
+                                    />
+                                ))}
                             </div>
                         </div>
-                        <div className="flex-1 w-full lg:w-auto order-3 flex flex-col items-center lg:items-start text-center lg:text-left">
-                            <div className="max-w-xs">
+                        <div className="flex-1 w-full lg:w-auto order-3 flex flex-col items-center lg:items-start text-center lg:text-left min-h-[160px]">
+                            <div className="max-w-xs transition-opacity duration-500" key={activeSpecialty}>
                                 <p className="text-lg text-slate-600 font-normal leading-relaxed mb-10">
-                                    Advanced diagnostics and preventative genomics designed to extend your healthspan. Our protocols anticipate future needs.
+                                    {specialtiesData[activeSpecialty].description}
                                 </p>
                                 <a className="inline-block border border-primary text-primary rounded-full px-10 py-4 text-sm font-normal tracking-widest uppercase hover:bg-primary hover:text-white transition-all" href="#">
                                     Learn More
@@ -178,7 +295,7 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-56 bg-white">
+            <section className="py-32 lg:py-48 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="flex flex-col lg:flex-row gap-20 items-center">
                         <div className="w-full lg:w-1/2">
@@ -210,94 +327,141 @@ export const Landing = () => {
                         </div>
                         <div className="w-full lg:w-1/2">
                             <div className="aspect-[4/5] w-full rounded-[40px] overflow-hidden shadow-2xl">
-                                <img alt="Luxury Care" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZue6ccNZDKxvFA6HWsxCJGMwfuv9jR0iw3gEipn8cG8rx_K9JeMPSwXUt_sHCGGU_psPt26oCVA2-oPUX7ly5Ce6q9vO_neQ_Qq9VJt_0QFU_iZp712C7uSoeesC7AGl57GhEuTqM7d_uLyi_ph6LvJBSCXgYhu9qLauTwGh8KwsLeWF5o7Gn4f9ey4JRLVYHas5XtedKMVVcxBHdJk_YO4ZAdgkLN9lMJuHTYcN_L0BwmjYNdeQ8xkObPooRlDD_kPjz4ElDZPc" />
+                                <img alt="Luxury Care" className="w-full h-full object-cover" src={section3Img} />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-32 lg:py-56 bg-white overflow-hidden">
+            <section className="py-32 lg:py-48 bg-white overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="flex justify-between items-end mb-16">
                         <div>
                             <h2 className="text-5xl md:text-7xl font-normal text-primary tracking-tight leading-[1.1]">Our Experts</h2>
                         </div>
                         <div className="flex gap-4">
-                            <button className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
+                            <button onClick={() => scrollExperts('left')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
                                 <span className="material-symbols-outlined">chevron_left</span>
                             </button>
-                            <button className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
+                            <button onClick={() => scrollExperts('right')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
                                 <span className="material-symbols-outlined">chevron_right</span>
                             </button>
                         </div>
                     </div>
-                    <div className="flex overflow-x-auto gap-8 pb-12 no-scrollbar scroll-smooth snap-x snap-mandatory -mx-8 px-8 lg:-mx-16 lg:px-16">
-                        <div className="flex-none w-[340px] md:w-[420px] bg-card-grey rounded-[40px] p-10 flex flex-col items-center text-center snap-start">
-                            <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg">
-                                <img alt="Dr. Vaughn" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbzoirvAE6tKBRDVx0Tfl-VBM9hE23WVg_9PndZ5tod4UO0_5B_NfHke-zkGb5IMKgYMzaVXOFW3nuiS5EFqjHDv000VQJbwhQb8BScNN5TQCIJAojgSTfQ2JCSNPxx5ma2v0Y7fnLYMOxyCt3kKU3dyggQ9lgouGZYlAeP-IVxb4E19shUAHf7dzgrUTj7HdauZmC5402Z7qD7Fgn0LeC7UNm4bUP2NLfNwI0qhmf_Lna-0OefqKY1-OS-mdTERv7TwI88IhaMbQ" />
+                    <div ref={expertsCarouselRef} className="flex overflow-x-auto gap-8 pb-12 no-scrollbar scroll-smooth snap-x snap-mandatory -mx-8 px-8 lg:-mx-16 lg:px-16">
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Tariq Al-Fayed" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor1Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Tariq Al-Fayed</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Senior Cardiologist</p>
                             </div>
-                            <h3 className="text-2xl font-bold text-primary mb-2">Dr. Vaughn</h3>
-                            <p className="text-lg text-slate-500 mb-6 font-normal">Senior Cardiologist</p>
-                            <p className="text-base text-slate-600 leading-relaxed mb-10">
-                                World-renowned specialist with over 20 years of experience in preventative cardiovascular medicine and longevity science.
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 28</span>
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Cardiology</span>
-                            </div>
-                        </div>
-                        <div className="flex-none w-[340px] md:w-[420px] bg-card-grey rounded-[40px] p-10 flex flex-col items-center text-center snap-start">
-                            <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg">
-                                <img alt="Dr. Chen" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-2kfYV84N9qWrbj5Mkyz81DOZSCjbVW9C_I7u8iv5yihRbccdM6cLTksjKWmxtK9lBHS185QhTkPjO5XjR29FzC3LThXrfnrY6-KBtO9hjMq6Ckt_fqo0mw2Wzlcb6d4TI8v6HG-hcIsKRzXn_q0yON178JO4VWN_Y-JJpfgpKsZBDd2F2ffFrP26YUKSyQMWkQ31tuUw_NIy8ETGuXvbeRtaAszPQlg8IgqT2s_KFKLZAJNbfg3OmB_YyiuyKrlggY_-zjukGro" />
-                            </div>
-                            <h3 className="text-2xl font-bold text-primary mb-2">Dr. Chen</h3>
-                            <p className="text-lg text-slate-500 mb-6 font-normal">Neurology Director</p>
-                            <p className="text-base text-slate-600 leading-relaxed mb-10">
-                                Pioneer in neuro-regenerative therapies and cognitive optimization, specializing in early detection and prevention protocols.
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 02</span>
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Neurology</span>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={doctor1Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Tariq Al-Fayed</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Senior Cardiologist</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    World-renowned specialist with over 20 years of experience in preventative cardiovascular medicine and longevity science.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 28</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Cardiology</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex-none w-[340px] md:w-[420px] bg-card-grey rounded-[40px] p-10 flex flex-col items-center text-center snap-start">
-                            <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg">
-                                <img alt="Dr. Ross" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtMaenr1pEd7mz66asqnPlfz-18K06fXkuuW0uSk7UJQb0uQPOdx1P3CWHGPBGrc5iKWHzzleMCGI73xdOiEndZhNj9AG9kSGXYDzNDFXEE55nFlASRo0Y9DgVHhjJmt-WV7VWTsCwcZ0lG78jPQLbwBde_v1giQDRZs3WsF2wpDdOoiBcdI5fqp_7tzHZZfBu3gOt-k_4zN-cH-M2CZID33Fv035DbfUu2Uld7gbE37X4yCzN_Qg8vMbIQ8E5K7uR0FxI4DLotw4" />
+
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Yasmin Mansour" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor2Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Yasmin Mansour</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Neurology Director</p>
                             </div>
-                            <h3 className="text-2xl font-bold text-primary mb-2">Dr. Ross</h3>
-                            <p className="text-lg text-slate-500 mb-6 font-normal">Integrative Medicine</p>
-                            <p className="text-base text-slate-600 leading-relaxed mb-10">
-                                Expert in holistic wellness and hormonal optimization, focusing on personalized biological protocols for high-performance individuals.
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 25</span>
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Integrative</span>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={doctor2Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Yasmin Mansour</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Neurology Director</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Pioneer in neuro-regenerative therapies and cognitive optimization, specializing in early detection and prevention protocols.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 02</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Neurology</span>
+                                </div>
                             </div>
                         </div>
-                        <div className="flex-none w-[340px] md:w-[420px] bg-card-grey rounded-[40px] p-10 flex flex-col items-center text-center snap-start">
-                            <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg">
-                                <img alt="Dr. Miller" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkyNRRMNagTr1Cr9jCveI_OzWjN2iWGCqeglIEsLwlUlrm25s8iiLaS3SLQYxumeS5tg8LLGJFv54LbCWdf2UnKaLYtUVTrYAs4UmO8PKiVHFN75wWcARIMlvW0OWVhzU5Nb24vzhmOSSABMy13l35XH2vj2ANSdl0Z7VgdkhcTdvrbPs0xIz09mzTkj6gqmjlRiqih29XoyDPlyWrJXUG8HC8ujnmBdAk7VDNubIKWUCVz8ZIWc-2F8lUnXlYYag3aFysytbJtLQ" />
+
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Kareem Hassan" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor3Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Kareem Hassan</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Integrative Medicine</p>
                             </div>
-                            <h3 className="text-2xl font-bold text-primary mb-2">Dr. Miller</h3>
-                            <p className="text-lg text-slate-500 mb-6 font-normal">Genetic Specialist</p>
-                            <p className="text-base text-slate-600 leading-relaxed mb-10">
-                                Leading the frontier of genomic diagnostics and CRISPR-based preventative assessments for generational health planning.
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-3 mt-auto">
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 10</span>
-                                <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Genomics</span>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={doctor3Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Kareem Hassan</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Integrative Medicine</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Expert in holistic wellness and hormonal optimization, focusing on personalized biological protocols for high-performance individuals.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 25</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Integrative</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Layla Rahman" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor4Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Layla Rahman</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Genetic Specialist</p>
+                            </div>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Layla Rahman" className="w-full h-full object-cover" src={doctor4Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Layla Rahman</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Genetic Specialist</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Leading the frontier of genomic diagnostics and CRISPR-based preventative assessments for generational health planning.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 10</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Genomics</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-40 lg:py-64 bg-white overflow-hidden relative">
+            <section className="py-32 lg:py-48 bg-white overflow-hidden relative">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center">
                     <span className="text-accent text-xs font-normal tracking-[0.4em] uppercase block mb-8">Membership</span>
                     <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal text-primary tracking-tight leading-none mb-16 max-w-4xl mx-auto">
-                        Join Our Global<br />VVIP Community
+                        Join Our Global<br />Saha Medical Community
                     </h2>
                     <div className="flex justify-center">
                         <a className="bg-primary hover:bg-blue-900 text-white px-14 py-6 rounded-full text-base font-normal tracking-widest uppercase transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1" href="#apply">
@@ -306,77 +470,59 @@ export const Landing = () => {
                     </div>
                 </div>
                 <div className="absolute top-10 left-[8%] w-24 h-32 md:w-32 md:h-44 rounded-3xl overflow-hidden shadow-2xl rotate-[-6deg] opacity-80 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 1" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkyNRRMNagTr1Cr9jCveI_OzWjN2iWGCqeglIEsLwlUlrm25s8iiLaS3SLQYxumeS5tg8LLGJFv54LbCWdf2UnKaLYtUVTrYAs4UmO8PKiVHFN75wWcARIMlvW0OWVhzU5Nb24vzhmOSSABMy13l35XH2vj2ANSdl0Z7VgdkhcTdvrbPs0xIz09mzTkj6gqmjlRiqih29XoyDPlyWrJXUG8HC8ujnmBdAk7VDNubIKWUCVz8ZIWc-2F8lUnXlYYag3aFysytbJtLQ" />
+                    <img alt="Saha Medical Member 1" className="w-full h-full object-cover" src={community1Img} />
                 </div>
                 <div className="absolute top-20 right-[18%] w-16 h-16 md:w-28 md:h-28 rounded-full overflow-hidden shadow-2xl rotate-[12deg] opacity-60 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 2" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjNc-wRRfpaovjug2v99Ycu9S5uSNSReXh4Hci9gBfGmnYg4LE1a1DXuFfHHRe-XOwssycSAIZo2nLZoOcY1LeWGjqBZkU9NdDlHo1_k__GDo17juW5LAtcSzmvGzWOXtitmpuiWCOStfyyhPCfFNrvVG1jptXoEe7Bu6Hcw5cmkaA2kM6f3SsNnAcIeKR3ZGUJRk7G21n9XDQnX_BBE37oFnkQqjaVvXEfZCw4tM6lbEOFgICBTBWAhCP19i9cNW7rlOtVHqetoY" />
+                    <img alt="Saha Medical Member 2" className="w-full h-full object-cover" src={community2Img} />
                 </div>
                 <div className="absolute top-1/2 left-[2%] -translate-y-1/2 w-28 h-40 md:w-44 md:h-56 rounded-[2.5rem] overflow-hidden shadow-2xl rotate-[4deg] opacity-70 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 3" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd5z1hq5PnsDUSniuqRWx2dikXBF7bxisEzyJf9nkQDbKc9bT2Ctbqfhj-evzpSXSEEqBBHhxTwNBxjR4OXausMqVt5JiFwmkwmqvObUNpa33AxGOLuDSQloyr-MB0l1gvzt3MiIGp6qDX-6JvsHJWDAbe1NFcBMApJl_dAS934a-910EG8hTe9c4ZNp1acveR2w6EJ8fLicynx0_yjEQfS9VkFI7kfsXlvFbZDIVMOYFhKZ6o5Lus-KT8MvyMfVIxY_jWDNvL-xw" />
+                    <img alt="Saha Medical Member 3" className="w-full h-full object-cover" src={community3Img} />
                 </div>
                 <div className="absolute top-[40%] right-[2%] w-24 h-32 md:w-36 md:h-48 rounded-[2rem] overflow-hidden shadow-2xl rotate-[-8deg] opacity-70 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 4" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbzoirvAE6tKBRDVx0Tfl-VBM9hE23WVg_9PndZ5tod4UO0_5B_NfHke-zkGb5IMKgYMzaVXOFW3nuiS5EFqjHDv000VQJbwhQb8BScNN5TQCIJAojgSTfQ2JCSNPxx5ma2v0Y7fnLYMOxyCt3kKU3dyggQ9lgouGZYlAeP-IVxb4E19shUAHf7dzgrUTj7HdauZmC5402Z7qD7Fgn0LeC7UNm4bUP2NLfNwI0qhmf_Lna-0OefqKY1-OS-mdTERv7TwI88IhaMbQ" />
+                    <img alt="Saha Medical Member 4" className="w-full h-full object-cover" src={community4Img} />
                 </div>
                 <div className="absolute bottom-12 left-[22%] w-20 h-28 md:w-32 md:h-40 rounded-[1.5rem] overflow-hidden shadow-2xl rotate-[15deg] opacity-60 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 5" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-2kfYV84N9qWrbj5Mkyz81DOZSCjbVW9C_I7u8iv5yihRbccdM6cLTksjKWmxtK9lBHS185QhTkPjO5XjR29FzC3LThXrfnrY6-KBtO9hjMq6Ckt_fqo0mw2Wzlcb6d4TI8v6HG-hcIsKRzXn_q0yON178JO4VWN_Y-JJpfgpKsZBDd2F2ffFrP26YUKSyQMWkQ31tuUw_NIy8ETGuXvbeRtaAszPQlg8IgqT2s_KFKLZAJNbfg3OmB_YyiuyKrlggY_-zjukGro" />
+                    <img alt="Saha Medical Member 5" className="w-full h-full object-cover" src={community1Img} />
                 </div>
                 <div className="absolute bottom-8 right-[12%] w-32 h-40 md:w-48 md:h-60 rounded-[3rem] overflow-hidden shadow-2xl rotate-[3deg] opacity-80 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="VVIP Member 6" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtMaenr1pEd7mz66asqnPlfz-18K06fXkuuW0uSk7UJQb0uQPOdx1P3CWHGPBGrc5iKWHzzleMCGI73xdOiEndZhNj9AG9kSGXYDzNDFXEE55nFlASRo0Y9DgVHhjJmt-WV7VWTsCwcZ0lG78jPQLbwBde_v1giQDRZs3WsF2wpDdOoiBcdI5fqp_7tzHZZfBu3gOt-k_4zN-cH-M2CZID33Fv035DbfUu2Uld7gbE37X4yCzN_Qg8vMbIQ8E5K7uR0FxI4DLotw4" />
+                    <img alt="Saha Medical Member 6" className="w-full h-full object-cover" src={community2Img} />
                 </div>
             </section>
 
-            <section className="py-32 lg:py-56 bg-white overflow-hidden">
+            <section className="py-32 lg:py-48 bg-white overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <h2 className="text-5xl md:text-6xl font-normal text-primary mb-20 tracking-tight">What Our Clients Say</h2>
-                    <div className="flex overflow-x-auto gap-8 pb-12 no-scrollbar -mx-8 px-8 lg:-mx-16 lg:px-16 scroll-smooth snap-x snap-mandatory">
-                        <div className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between snap-center min-h-[500px]">
-                            <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
-                                "Being able to access a specialist without waiting weeks has been a game-changer. VVIP's service is absolutely top-notch."
-                            </p>
-                            <div className="flex items-center gap-5 mt-10">
-                                <img alt="Daniel Kardashian" className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkyNRRMNagTr1Cr9jCveI_OzWjN2iWGCqeglIEsLwlUlrm25s8iiLaS3SLQYxumeS5tg8LLGJFv54LbCWdf2UnKaLYtUVTrYAs4UmO8PKiVHFN75wWcARIMlvW0OWVhzU5Nb24vzhmOSSABMy13l35XH2vj2ANSdl0Z7VgdkhcTdvrbPs0xIz09mzTkj6gqmjlRiqih29XoyDPlyWrJXUG8HC8ujnmBdAk7VDNubIKWUCVz8ZIWc-2F8lUnXlYYag3aFysytbJtLQ" />
-                                <div>
-                                    <h4 className="text-lg font-normal text-primary">Daniel Kardashian</h4>
-                                    <p className="text-sm font-normal text-slate-500">Los Angeles, CA</p>
+
+                    <div className="relative flex overflow-hidden group -mx-8 px-8 lg:-mx-16 lg:px-16">
+                        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-8 pb-12">
+                            {/* Render Array Twice for Infinite Looping Marquee */}
+                            {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
+                                <div key={idx} className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between min-h-[500px] hover:-translate-y-2 transition-transform duration-300">
+                                    <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
+                                        "{testimonial.quote}"
+                                    </p>
+                                    <div className="flex items-center gap-5 mt-10">
+                                        <img alt={testimonial.name} className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src={testimonial.image} />
+                                        <div>
+                                            <h4 className="text-lg font-normal text-primary">{testimonial.name}</h4>
+                                            <p className="text-sm font-normal text-slate-500">{testimonial.location}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between snap-center min-h-[500px]">
-                            <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
-                                "The personalized longevity protocols make me feel more in control of my future. Truly a lifesaver in every sense."
-                            </p>
-                            <div className="flex items-center gap-5 mt-10">
-                                <img alt="Megan Fox" className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjNc-wRRfpaovjug2v99Ycu9S5uSNSReXh4Hci9gBfGmnYg4LE1a1DXuFfHHRe-XOwssycSAIZo2nLZoOcY1LeWGjqBZkU9NdDlHo1_k__GDo17juW5LAtcSzmvGzWOXtitmpuiWCOStfyyhPCfFNrvVG1jptXoEe7Bu6Hcw5cmkaA2kM6f3SsNnAcIeKR3ZGUJRk7G21n9XDQnX_BBE37oFnkQqjaVvXEfZCw4tM6lbEOFgICBTBWAhCP19i9cNW7rlOtVHqetoY" />
-                                <div>
-                                    <h4 className="text-lg font-normal text-primary">Megan Fox</h4>
-                                    <p className="text-sm font-normal text-slate-500">Washington, NY</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between snap-center min-h-[500px]">
-                            <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
-                                "Exceptional quality across the board. The discretion and proficiency here will save you both time and worry."
-                            </p>
-                            <div className="flex items-center gap-5 mt-10">
-                                <img alt="Jessica Mercedes" className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCd5z1hq5PnsDUSniuqRWx2dikXBF7bxisEzyJf9nkQDbKc9bT2Ctbqfhj-evzpSXSEEqBBHhxTwNBxjR4OXausMqVt5JiFwmkwmqvObUNpa33AxGOLuDSQloyr-MB0l1gvzt3MiIGp6qDX-6JvsHJWDAbe1NFcBMApJl_dAS934a-910EG8hTe9c4ZNp1acveR2w6EJ8fLicynx0_yjEQfS9VkFI7kfsXlvFbZDIVMOYFhKZ6o5Lus-KT8MvyMfVIxY_jWDNvL-xw" />
-                                <div>
-                                    <h4 className="text-lg font-normal text-primary">Jessica Mercedes</h4>
-                                    <p className="text-sm font-normal text-slate-500">CEO @ Scars can</p>
-                                </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-32 lg:py-56 bg-white">
+            <section className="py-32 lg:py-48 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="bg-primary rounded-[3rem] overflow-hidden relative min-h-[600px] flex items-center shadow-2xl">
                         <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/40 via-transparent to-transparent"></div>
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full p-12 lg:p-24 relative z-10">
                             <div className="flex flex-col justify-center">
                                 <h2 className="text-white text-5xl lg:text-7xl font-normal leading-[1.1] tracking-tight mb-6">
-                                    Download the<br />VVIP Experience
+                                    Download the<br />Saha Medical Experience
                                 </h2>
                                 <p className="text-white/70 text-lg lg:text-xl font-normal max-w-md mb-12 leading-relaxed">
                                     Manage your health journey with absolute precision from anywhere in the world. Real-time access to your concierge team and premium health analytics.
@@ -480,15 +626,13 @@ export const Landing = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="absolute bottom-16 left-1/2 -translate-x-1/2 pointer-events-none w-full flex justify-center opacity-[0.03]">
-                        <span className="text-[20vw] font-bold text-white leading-none tracking-tighter select-none">VVIP</span>
-                    </div>
+
                     <div className="border-t border-white/5 pt-12 mt-12 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
                         <p className="text-white/30 text-xs font-normal tracking-wide">
-                            © Copyright 2024 | VVIP Medical Group | UAE &amp; Global
+                            © Copyright 2024 | Saha Medical Medical Group | UAE &amp; Global
                         </p>
                         <p className="text-white/30 text-xs font-normal tracking-wide">
-                            Designed &amp; Developed By <span className="text-white/60">VVIP Creative</span>
+                            Designed &amp; Developed By <span className="text-white/60">Saha Medical Creative</span>
                         </p>
                     </div>
                 </div>
