@@ -42,8 +42,8 @@ export const Landing = () => {
         const cards = communityCardsRef.current.querySelectorAll('.community-card');
 
         cards.forEach((card, index) => {
-            // Give them a staggered start position (further down) and start them invisible
-            const yStart = index === 1 ? 150 : 80;
+            // High staggered start positions for aggressive overlap effect
+            const yStart = index % 2 === 0 ? 250 : 400;
 
             gsap.fromTo(
                 card,
@@ -52,14 +52,14 @@ export const Landing = () => {
                     opacity: 0
                 },
                 {
-                    y: 0,
+                    y: -150, // Pull them way up to overlap the sticky header
                     opacity: 1,
-                    ease: "power2.out", // Smooth easing instead of linear scrub
+                    ease: "power2.out",
                     scrollTrigger: {
-                        trigger: card, // Trigger on each individual card
-                        start: "top 85%", // When the top of the card hits 85% from the top of the viewport
-                        end: "top 45%",
-                        scrub: 1, // Add some smoothing to the scrub
+                        trigger: communityCardsRef.current, // Use the container as the scrub trigger 
+                        start: "top 95%",
+                        end: "top 10%", // Continue animating until container reaches near top
+                        scrub: 1.5, // Smoother scrub
                     }
                 }
             );
@@ -67,9 +67,7 @@ export const Landing = () => {
 
         return () => {
             ScrollTrigger.getAll().forEach(t => {
-                // We triggered on the cards directly now, not the parent ref
-                const isCardTrigger = Array.from(cards).some(c => t.trigger === c);
-                if (isCardTrigger) t.kill();
+                if (t.trigger === communityCardsRef.current) t.kill();
             });
         };
     }, []);
@@ -500,8 +498,9 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-[#FDFBF7] overflow-hidden relative min-h-[900px] flex items-center flex-col justify-center font-sans tracking-tight">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center flex flex-col items-center">
+            <section className="py-20 lg:py-32 bg-[#FDFBF7] overflow-hidden relative min-h-[160vh] font-sans tracking-tight">
+                {/* Sticky Header Layer */}
+                <div className="sticky top-[20vh] max-w-[1440px] mx-auto px-8 lg:px-16 z-0 text-center flex flex-col items-center">
                     <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-none text-xs font-semibold tracking-wide mb-8 inline-block">
                         Community
                     </span>
@@ -522,10 +521,11 @@ export const Landing = () => {
                     </div>
                 </div>
 
-                <div ref={communityCardsRef} className="w-full max-w-[1200px] mx-auto px-8 lg:px-16 relative z-10 mt-16 pb-32">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                {/* Parallax Overlapping Cards */}
+                <div ref={communityCardsRef} className="w-full max-w-[1200px] mx-auto px-8 lg:px-16 relative z-10 mt-[60vh] pb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                         {/* Card 1 */}
-                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none">
+                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7]">
                             <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
                                 <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={community1Img} />
                             </div>
@@ -535,7 +535,7 @@ export const Landing = () => {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none mt-0 md:mt-12">
+                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7] mt-0 md:mt-24">
                             <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
                                 <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={community2Img} />
                             </div>
@@ -545,7 +545,7 @@ export const Landing = () => {
                         </div>
 
                         {/* Card 3 */}
-                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none">
+                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7] mt-0 md:mt-12">
                             <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
                                 <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={community3Img} />
                             </div>
