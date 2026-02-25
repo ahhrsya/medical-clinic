@@ -536,7 +536,7 @@ export const Landing = () => {
                         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto w-full">
                             <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">START YOUR JOURNEY</h3>
                             <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
-                                Your Health Is Your<br />Greatest Legacy
+                                Your Health Is<br />Your<br />Greatest Legacy
                             </h2>
                             <p className="text-[#4A5D53] text-lg lg:text-xl max-w-[600px] mx-auto mb-12 leading-relaxed font-normal">
                                 Protect what matters most. Join an elite community dedicated to proactive health, long-term vitality, and a future without medical friction.
