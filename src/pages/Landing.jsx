@@ -21,7 +21,6 @@ import community4Img from '../assets/community-4.jpg';
 
 export const Landing = () => {
     const philosophySectionRef = useRef(null);
-    const expertsCarouselRef = useRef(null);
     const testimonialsRef = useRef(null);
     const communityCardsRef = useRef(null);
     const discoverSectionRef = useRef(null);
@@ -101,15 +100,7 @@ export const Landing = () => {
         }
     ];
 
-    const scrollExperts = (direction) => {
-        if (expertsCarouselRef.current) {
-            const scrollAmount = 450; // card w-[420px] + gap-8 [32px]
-            expertsCarouselRef.current.scrollBy({
-                left: direction === 'left' ? -scrollAmount : scrollAmount,
-                behavior: 'smooth'
-            });
-        }
-    };
+
 
     // Discover Section GSAP text animations removed as per request (text stays static while images scroll)
 
@@ -166,23 +157,23 @@ export const Landing = () => {
                     ))}
                     <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/20 to-transparent"></div>
                 </div>
-                <div className="absolute top-6 left-0 right-0 z-[100] px-4 md:px-8">
-                    <nav className="max-w-[1280px] mx-auto bg-white rounded-full py-2.5 pl-8 pr-2 flex justify-between items-center shadow-lg">
+                <div className="absolute top-0 left-0 right-0 z-[100] px-8 lg:px-16 pt-8">
+                    <nav className="max-w-[1440px] mx-auto flex justify-between items-center w-full">
                         <div className="flex items-center">
-                            <span className="text-[22px] font-semibold text-[#294cbe] tracking-tight flex items-start gap-0.5">
+                            <span className="text-[22px] font-semibold text-white tracking-tight flex items-start gap-0.5">
                                 Saha Medical
-                                <span className="text-slate-400 text-[10px] font-normal mt-1 border border-slate-300 rounded-full w-3 h-3 flex items-center justify-center">R</span>
+                                <span className="text-white/70 text-[10px] font-normal mt-1 border border-white/50 rounded-full w-3 h-3 flex items-center justify-center">R</span>
                             </span>
                         </div>
-                        <div className="hidden md:flex items-center space-x-8 text-[13px] font-medium text-slate-500">
-                            <a className="hover:text-slate-900 transition-colors" href="#">About</a>
-                            <a className="hover:text-slate-900 transition-colors" href="#">Specialties</a>
-                            <a className="hover:text-slate-900 transition-colors" href="#">Our Experts</a>
-                            <a className="hover:text-slate-900 transition-colors" href="#">Careers</a>
+                        <div className="hidden md:flex items-center space-x-12 text-[14px] font-medium text-white/90">
+                            <a className="hover:text-white transition-colors" href="#">About</a>
+                            <a className="hover:text-white transition-colors" href="#">Specialties</a>
+                            <a className="hover:text-white transition-colors" href="#">Our Experts</a>
+                            <a className="hover:text-white transition-colors" href="#">Careers</a>
                         </div>
                         <div className="flex items-center">
-                            <a className="bg-[#294cbe] text-white px-6 py-2.5 text-[13px] font-medium tracking-wide hover:bg-[#1a348c] transition-all rounded-full flex items-center gap-2" href="#booking">
-                                Schedule Visit <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+                            <a className="bg-[#0f172a] border border-white/20 text-white px-6 py-2.5 text-[14px] font-medium tracking-wide hover:bg-black transition-all rounded-full flex items-center gap-2" href="#booking">
+                                <span className="material-symbols-outlined text-[18px]">person</span> Account
                             </a>
                         </div>
                     </nav>
@@ -197,14 +188,19 @@ export const Landing = () => {
                                 Immediate access to world-class specialists in an environment of absolute tranquility and bespoke medical excellence.
                             </p>
                             <div className="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                                <a className="bg-white text-primary px-10 py-4 rounded-full text-base font-medium tracking-wide transition-all shadow-xl hover:bg-slate-100 flex items-center gap-2" href="#booking">
-                                    Free Consultation <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                <a className="bg-white text-primary px-10 py-4 rounded-full text-base font-medium tracking-wide transition-all shadow-xl hover:bg-slate-100 flex items-center" href="#booking">
+                                    Book your visit
                                 </a>
-                                <a className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-10 py-4 rounded-full text-base font-medium tracking-wide transition-all hover:bg-white/20 flex items-center gap-2" href="#">
-                                    Contact Now <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                                <a className="bg-transparent border border-white text-white px-10 py-4 rounded-full text-base font-medium tracking-wide transition-all hover:bg-white/10 flex items-center" href="#">
+                                    Discover more
                                 </a>
                             </div>
                         </div>
+                    </div>
+
+                    <div className="absolute bottom-10 left-8 lg:left-16 text-white/80 hidden md:flex items-center gap-4 text-sm tracking-[0.2em] uppercase">
+                        <span className="w-12 h-[1px] bg-white/40"></span>
+                        Scroll Down
                     </div>
 
                     {/* Floating Socials and Slider Controls */}
@@ -247,74 +243,55 @@ export const Landing = () => {
                 </header>
             </div>
 
-            <section ref={philosophySectionRef} className="py-32 lg:py-48 bg-white">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <div className="mb-20">
-                        <span className="text-accent text-xs font-normal tracking-[0.3em] uppercase block mb-4">Our Philosophy</span>
-                        <ScrollReveal
-                            as="h2"
-                            baseRotation={2}
-                            blurStrength={8}
-                            containerClassName="max-w-5xl"
-                            textClassName="font-sans text-5xl md:text-6xl lg:text-7xl font-normal text-primary leading-[1.1] tracking-tight inline-block"
-                            start="top 90%"
-                            end="bottom 40%"
-                        >
-                            {'True luxury is the absence of friction. '}
-                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-emerald-500 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
-                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">workspace_premium</span>
-                            </span>
-                            {' We strip away the unnecessary, '}
-                            <span className="inline-flex items-center justify-center w-[80px] h-[50px] md:w-[100px] md:h-[60px] bg-blue-600 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
-                                <span className="material-symbols-outlined text-[28px] md:text-[36px]">filter_alt</span>
-                            </span>
-                            {' leaving only clarity, precision, '}
-                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-rose-500 rounded-[20px] md:rounded-[24px] text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3 rotate-6">
-                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">favorite</span>
-                            </span>
-                            {' and profound care.'}
-                        </ScrollReveal>
-                    </div>
-                    <div className="flex flex-col lg:flex-row gap-12 items-end">
-                        <div className="w-full lg:w-3/4">
-                            <div className="rounded-[2rem] overflow-hidden aspect-[16/9] shadow-2xl">
-                                <img alt="World-class medical team in a luxury clinical setting" className="w-full h-full object-cover" src={aboutImg} />
-                            </div>
+            <section ref={philosophySectionRef} className="py-24 lg:py-32 bg-white">
+                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 mb-20">
+                    <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-8 text-[#1A2530]">ABOUT US</span>
+                    <h2 className="text-4xl md:text-5xl lg:text-[56px] font-normal text-primary leading-[1.1] tracking-tight max-w-5xl">
+                        Premium healthcare should be effortless. We<br className="hidden lg:block" /> remove the friction, leaving only clarity, precision,<br className="hidden lg:block" /> and profound care.
+                    </h2>
+                </div>
+                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
+                    <div className="w-full lg:w-[60%] pl-0">
+                        <div className="w-full aspect-[16/10] bg-slate-100 overflow-hidden">
+                            <img alt="Doctor consultation" className="w-full h-full object-cover" src={community1Img} />
                         </div>
-                        <div className="w-full lg:w-1/4 pb-4">
-                            <div className="max-w-xs">
-                                <p className="text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
-                                    The Art of Subtraction. Saha Medical was born from a vision to simplify healthcare and make it seamless for the world's most discerning individuals. By removing administrative complexity, we return your most valuable asset: time.
-                                </p>
-                            </div>
+                    </div>
+                    <div className="w-full lg:w-[40%] px-8 lg:px-0 lg:pr-16 flex justify-start">
+                        <div className="max-w-sm">
+                            <p className="text-lg text-[#4A5D53] font-normal leading-relaxed">
+                                Our clinics combine advanced technology with an atmosphere of tranquility. We believe that true wellbeing starts the moment you walk through our doors.
+                            </p>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white">
+            <section className="py-24 lg:py-32 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <div className="text-center mb-24">
-                        <span className="text-accent text-sm font-normal tracking-[0.4em] uppercase block mb-6">Core Specialties</span>
-                        <h2 className="text-5xl lg:text-7xl font-normal text-primary tracking-tight">Our Specialties</h2>
+                    <div className="text-center mb-20">
+                        <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">WHAT WE DO</span>
+                        <h2 className="text-4xl lg:text-5xl font-normal text-primary tracking-tight mb-6">Our Specialties</h2>
+                        <p className="text-[#4A5D53] text-lg max-w-2xl mx-auto">
+                            We bring together leading professionals from every medical discipline to provide your family a cohesive, deeply personalized care plan.
+                        </p>
                     </div>
-                    <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-24">
-                        <div className="flex-1 w-full lg:w-auto order-2 lg:order-1 flex justify-center lg:justify-end">
-                            <ul className="space-y-8 text-xl lg:text-2xl font-normal text-primary w-full max-w-xs lg:text-right">
+                    <div className="flex flex-col md:flex-row items-center md:items-start justify-between gap-12 lg:gap-16">
+                        <div className="w-full md:w-1/4 flex flex-col pt-0 lg:pt-20 border-t border-slate-100 md:border-t-0 md:border-l pl-0 md:pl-8">
+                            <ul className="space-y-8 text-xl lg:text-2xl font-normal text-primary w-full mt-8 md:mt-0">
                                 {specialtiesData.map((item, index) => (
                                     <li
                                         key={index}
                                         onMouseEnter={() => setActiveSpecialty(index)}
-                                        className={`flex items-center lg:justify-end gap-4 cursor-pointer transition-colors ${activeSpecialty === index ? 'text-primary' : 'text-slate-300 hover:text-slate-400'}`}
+                                        className={`flex items-center gap-4 cursor-pointer transition-all ${activeSpecialty === index ? 'text-[#0F172A] font-medium' : 'text-[#94A3B8] hover:text-[#475569]'}`}
                                     >
-                                        {activeSpecialty === index && <span className="w-2 h-2 rounded-full bg-primary hidden lg:inline-block"></span>}
+                                        {activeSpecialty === index && <span className="w-2.5 h-2.5 bg-[#0F172A] shrink-0"></span>}
                                         <span className="tracking-tight">{item.title}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className="flex-[1.5] order-1 lg:order-2 w-full max-w-[600px]">
-                            <div className="aspect-[3.5/4.5] w-full rounded-[40px] overflow-hidden shadow-2xl relative">
+                        <div className="w-full md:w-2/4 max-w-[500px] mx-auto">
+                            <div className="aspect-[4/5] w-full overflow-hidden shadow-xl relative bg-slate-100">
                                 {specialtiesData.map((item, index) => (
                                     <img
                                         key={index}
@@ -325,12 +302,12 @@ export const Landing = () => {
                                 ))}
                             </div>
                         </div>
-                        <div className="flex-1 w-full lg:w-auto order-3 flex flex-col items-center lg:items-start text-center lg:text-left min-h-[160px]">
-                            <div className="max-w-xs transition-opacity duration-500" key={activeSpecialty}>
-                                <p className="text-lg text-slate-600 font-normal leading-relaxed mb-10">
+                        <div className="w-full md:w-1/4 flex flex-col items-start pt-0 lg:pt-20">
+                            <div className="transition-opacity duration-500" key={activeSpecialty}>
+                                <p className="text-lg text-[#4A5D53] font-normal leading-relaxed mb-8">
                                     {specialtiesData[activeSpecialty].description}
                                 </p>
-                                <a className="inline-block border border-primary text-primary rounded-full px-10 py-4 text-sm font-normal tracking-widest uppercase hover:bg-primary hover:text-white transition-all" href="#">
+                                <a className="inline-block border border-[#0F172A] text-[#0F172A] px-8 py-3 text-sm font-medium hover:bg-[#0F172A] hover:text-white transition-colors uppercase tracking-wider" href="#">
                                     Learn More
                                 </a>
                             </div>
@@ -339,190 +316,137 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white">
+            <section className="py-24 lg:py-32 bg-[#F8F9FA]">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <div className="flex flex-col lg:flex-row gap-20 items-center">
                         <div className="w-full lg:w-1/2">
                             <div className="max-w-xl">
-                                <h2 className="text-5xl lg:text-7xl font-normal tracking-tight text-primary mb-10 leading-[1.05]">
+                                <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">CONCIERGE DOCTORS</span>
+                                <h2 className="text-4xl md:text-5xl lg:text-[56px] font-normal tracking-tight text-primary mb-8 leading-[1.1]">
                                     Reimagining the<br />
                                     Concierge Standard
                                 </h2>
-                                <p className="text-xl text-slate-600 font-normal leading-relaxed mb-16">
+                                <p className="text-lg text-[#4A5D53] font-normal leading-relaxed mb-16 max-w-lg">
                                     We don't just treat symptoms; we curate vitality. Our approach combines cutting-edge longevity science with the hospitality of a world-class resort.
                                 </p>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12">
                                     <div className="group">
-                                        <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mb-6 border border-accent/20">
-                                            <span className="material-symbols-outlined text-4xl text-accent font-light">schedule</span>
+                                        <div className="w-12 h-12 bg-[#1A2530] flex items-center justify-center mb-6">
+                                            <span className="material-symbols-outlined text-xl text-white font-light">schedule</span>
                                         </div>
-                                        <h3 className="text-2xl font-normal text-primary mb-3">24/7 Elite Access</h3>
-                                        <p className="text-base text-slate-500 font-normal leading-relaxed">Unrestricted access to world-class specialists, any time, anywhere.</p>
+                                        <h3 className="text-xl font-semibold text-[#0F172A] mb-3 tracking-tight">24/7 Elite Access</h3>
+                                        <p className="text-[#4A5D53] text-[15px] font-normal leading-relaxed">Unrestricted access to world-class specialists, any time, anywhere.</p>
                                     </div>
                                     <div className="group">
-                                        <div className="w-16 h-16 rounded-full bg-slate-50 flex items-center justify-center mb-6 border border-accent/20">
-                                            <span className="material-symbols-outlined text-4xl text-accent font-light">vital_signs</span>
+                                        <div className="w-12 h-12 bg-[#1A2530] flex items-center justify-center mb-6">
+                                            <span className="material-symbols-outlined text-xl text-white font-light">vital_signs</span>
                                         </div>
-                                        <h3 className="text-2xl font-normal text-primary mb-3">Bespoke Wellness</h3>
-                                        <p className="text-base text-slate-500 font-normal leading-relaxed">Genomic-based protocols tailored exclusively to your biology.</p>
+                                        <h3 className="text-xl font-semibold text-[#0F172A] mb-3 tracking-tight">Bespoke Wellness</h3>
+                                        <p className="text-[#4A5D53] text-[15px] font-normal leading-relaxed">Genomic-based protocols tailored exclusively to your biology.</p>
+                                    </div>
+                                    <div className="group">
+                                        <div className="w-12 h-12 bg-[#1A2530] flex items-center justify-center mb-6">
+                                            <span className="material-symbols-outlined text-xl text-white font-light">group</span>
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-[#0F172A] mb-3 tracking-tight">Your Care Medical Team</h3>
+                                        <p className="text-[#4A5D53] text-[15px] font-normal leading-relaxed">A dedicated team of experts constantly monitoring your health.</p>
+                                    </div>
+                                    <div className="group">
+                                        <div className="w-12 h-12 bg-[#1A2530] flex items-center justify-center mb-6">
+                                            <span className="material-symbols-outlined text-xl text-white font-light">shield_plus</span>
+                                        </div>
+                                        <h3 className="text-xl font-semibold text-[#0F172A] mb-3 tracking-tight">Preventative Care</h3>
+                                        <p className="text-[#4A5D53] text-[15px] font-normal leading-relaxed">Proactive measures to stop illnesses before they start.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="w-full lg:w-1/2">
-                            <div className="aspect-[4/5] w-full rounded-[40px] overflow-hidden shadow-2xl">
-                                <img alt="Luxury Care" className="w-full h-full object-cover" src={section3Img} />
+                        <div className="w-full lg:w-1/2 flex justify-end">
+                            <div className="w-full lg:max-w-md aspect-[3/4] bg-slate-100 overflow-hidden shadow-xl">
+                                <img alt="Luxury Care Provider" className="w-full h-full object-cover" src={doctor1Img} />
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white overflow-hidden">
+            <section className="py-24 lg:py-32 bg-white">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <div className="flex justify-between items-end mb-16">
-                        <div>
-                            <h2 className="text-5xl md:text-7xl font-normal text-primary tracking-tight leading-[1.1]">Our Experts</h2>
-                        </div>
-                        <div className="flex gap-4">
-                            <button onClick={() => scrollExperts('left')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
-                                <span className="material-symbols-outlined">chevron_left</span>
-                            </button>
-                            <button onClick={() => scrollExperts('right')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
-                                <span className="material-symbols-outlined">chevron_right</span>
-                            </button>
-                        </div>
+                    <div className="text-center mb-20">
+                        <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">OUR DOCTORS</span>
+                        <h2 className="text-4xl lg:text-5xl font-normal text-primary tracking-tight mb-6">Meet Our Specialists</h2>
+                        <p className="text-[#4A5D53] text-lg max-w-2xl mx-auto">
+                            Read the backgrounds and expertise of our medical minds, hand-picked from the most prestigious medical institutions worldwide.
+                        </p>
                     </div>
-                    <div ref={expertsCarouselRef} className="flex overflow-x-auto gap-8 pb-12 no-scrollbar scroll-smooth snap-x snap-mandatory -mx-8 px-8 lg:-mx-16 lg:px-16">
-                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
-                            {/* Base full image */}
-                            <img alt="Dr. Tariq Al-Fayed" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor1Img} />
-                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                            {/* Name label at bottom (default view) */}
-                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
-                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Tariq Al-Fayed</h3>
-                                <p className="text-white/90 font-medium drop-shadow-md">Senior Cardiologist</p>
-                            </div>
-                            {/* Hover Details Overlay */}
-                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                                    <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={doctor1Img} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Tariq Al-Fayed</h3>
-                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Senior Cardiologist</p>
-                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                                    World-renowned specialist with over 20 years of experience in preventative cardiovascular medicine and longevity science.
-                                </p>
-                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 28</span>
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Cardiology</span>
-                                </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
+                            <img alt="Dr. Tariq Al-Fayed" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor1Img} />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Tariq Al-Fayed</h3>
+                                <p className="text-white/80 text-sm font-normal">Senior Cardiologist</p>
                             </div>
                         </div>
 
-                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
-                            {/* Base full image */}
-                            <img alt="Dr. Yasmin Mansour" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor2Img} />
-                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                            {/* Name label at bottom (default view) */}
-                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
-                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Yasmin Mansour</h3>
-                                <p className="text-white/90 font-medium drop-shadow-md">Neurology Director</p>
-                            </div>
-                            {/* Hover Details Overlay */}
-                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                                    <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={doctor2Img} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Yasmin Mansour</h3>
-                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Neurology Director</p>
-                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                                    Pioneer in neuro-regenerative therapies and cognitive optimization, specializing in early detection and prevention protocols.
-                                </p>
-                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 02</span>
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Neurology</span>
-                                </div>
+                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
+                            <img alt="Dr. Yasmin Mansour" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor2Img} />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Yasmin Mansour</h3>
+                                <p className="text-white/80 text-sm font-normal">Neurology Director</p>
                             </div>
                         </div>
 
-                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
-                            {/* Base full image */}
-                            <img alt="Dr. Kareem Hassan" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor3Img} />
-                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                            {/* Name label at bottom (default view) */}
-                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
-                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Kareem Hassan</h3>
-                                <p className="text-white/90 font-medium drop-shadow-md">Integrative Medicine</p>
-                            </div>
-                            {/* Hover Details Overlay */}
-                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                                    <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={doctor3Img} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Kareem Hassan</h3>
-                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Integrative Medicine</p>
-                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                                    Expert in holistic wellness and hormonal optimization, focusing on personalized biological protocols for high-performance individuals.
-                                </p>
-                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 25</span>
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Integrative</span>
-                                </div>
+                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
+                            <img alt="Dr. Kareem Hassan" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor3Img} />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Kareem Hassan</h3>
+                                <p className="text-white/80 text-sm font-normal">Integrative Medicine</p>
                             </div>
                         </div>
 
-                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
-                            {/* Base full image */}
-                            <img alt="Dr. Layla Rahman" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor4Img} />
-                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
-                            {/* Name label at bottom (default view) */}
-                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
-                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Layla Rahman</h3>
-                                <p className="text-white/90 font-medium drop-shadow-md">Genetic Specialist</p>
-                            </div>
-                            {/* Hover Details Overlay */}
-                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
-                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
-                                    <img alt="Dr. Layla Rahman" className="w-full h-full object-cover" src={doctor4Img} />
-                                </div>
-                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Layla Rahman</h3>
-                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Genetic Specialist</p>
-                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
-                                    Leading the frontier of genomic diagnostics and CRISPR-based preventative assessments for generational health planning.
-                                </p>
-                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 10</span>
-                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Genomics</span>
-                                </div>
+                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
+                            <img alt="Dr. Layla Rahman" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor4Img} />
+                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
+                            <div className="absolute bottom-6 left-6 right-6">
+                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Layla Rahman</h3>
+                                <p className="text-white/80 text-sm font-normal">Genetic Specialist</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white overflow-hidden">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <h2 className="text-5xl md:text-6xl font-normal text-primary mb-20 tracking-tight">What Our Clients Say</h2>
+            <section className="py-24 lg:py-32 bg-[#F8F9FA] overflow-hidden">
+                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 text-center mb-16">
+                    <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">TESTIMONIALS</span>
+                    <h2 className="text-4xl lg:text-5xl font-normal text-primary tracking-tight">What Our Patients Say</h2>
+                </div>
 
-                    <div className="relative flex overflow-hidden group -mx-8 px-8 lg:-mx-16 lg:px-16">
-                        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-8 pb-12">
-                            {/* Render Array Twice for Infinite Looping Marquee */}
-                            {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
-                                <div key={idx} className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between min-h-[500px] hover:-translate-y-2 transition-transform duration-300">
-                                    <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
+                <div className="relative flex overflow-hidden group">
+                    <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 pb-12 px-6">
+                        {/* Render Array Twice for Infinite Looping Marquee */}
+                        {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
+                            <div key={idx} className="flex-none w-[350px] md:w-[420px] bg-white border border-slate-100 shadow-sm p-10 flex flex-col justify-between min-h-[380px] hover:shadow-md transition-shadow duration-300">
+                                <div className="mb-8">
+                                    <div className="flex text-[#0F172A] mb-6">
+                                        {[...Array(5)].map((_, i) => (
+                                            <span key={i} className="material-symbols-outlined text-[18px]">star</span>
+                                        ))}
+                                    </div>
+                                    <p className="text-lg font-normal text-[#4A5D53] leading-relaxed">
                                         "{testimonial.quote}"
                                     </p>
-                                    <div className="flex items-center gap-5 mt-10">
-                                        <img alt={testimonial.name} className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src={testimonial.image} />
-                                        <div>
-                                            <h4 className="text-lg font-normal text-primary">{testimonial.name}</h4>
-                                            <p className="text-sm font-normal text-slate-500">{testimonial.location}</p>
-                                        </div>
-                                    </div>
                                 </div>
-                            ))}
-                        </div>
+                                <div>
+                                    <h4 className="text-base font-semibold text-[#0F172A]">{testimonial.name}</h4>
+                                    <p className="text-sm font-normal text-slate-500">{testimonial.location}</p>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </section>
@@ -598,71 +522,81 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <footer className="bg-primary pt-24 pb-12 overflow-hidden">
+            <footer className="bg-[#0F172A] pt-24 pb-12 overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
-                        <div className="bg-slate-900/40 border border-white/5 rounded-3xl p-10 text-center flex flex-col items-center group hover:bg-slate-900/60 transition-all">
-                            <span className="material-symbols-outlined text-accent text-3xl mb-4">location_on</span>
-                            <h4 className="text-white text-lg font-normal mb-2">Clinic Address</h4>
-                            <p className="text-white/60 text-sm leading-relaxed">DIFC, Gate Village 5,<br />Dubai, United Arab Emirates</p>
+                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-20 gap-10">
+                        <div className="max-w-md">
+                            <span className="text-2xl font-semibold text-white tracking-tight flex items-start gap-0.5 mb-6">
+                                Saha Medical
+                                <span className="text-white/70 text-[10px] font-normal mt-1 border border-white/50 w-3 h-3 flex items-center justify-center">R</span>
+                            </span>
+                            <p className="text-white/80 text-lg md:text-xl font-normal leading-relaxed">
+                                Premium healthcare should be effortless.
+                            </p>
                         </div>
-                        <div className="bg-slate-900/40 border border-white/5 rounded-3xl p-10 text-center flex flex-col items-center group hover:bg-slate-900/60 transition-all">
-                            <span className="material-symbols-outlined text-accent text-3xl mb-4">call</span>
-                            <h4 className="text-white text-lg font-normal mb-2">Phone Number</h4>
-                            <p className="text-white/60 text-sm leading-relaxed">+971 4 000 0000<br />+971 50 000 0000</p>
-                        </div>
-                        <div className="bg-slate-900/40 border border-white/5 rounded-3xl p-10 text-center flex flex-col items-center group hover:bg-slate-900/60 transition-all">
-                            <span className="material-symbols-outlined text-accent text-3xl mb-4">mail</span>
-                            <h4 className="text-white text-lg font-normal mb-2">Email Address</h4>
-                            <p className="text-white/60 text-sm leading-relaxed">concierge@vvipclinic.com<br />medical@vvipclinic.com</p>
-                        </div>
-                    </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 mb-32 relative z-10">
-                        <div className="lg:col-span-4">
-                            <h3 className="text-white text-3xl font-normal mb-8">Sign up to Newsletter!</h3>
-                            <div className="relative max-w-sm">
-                                <input className="w-full bg-transparent border-b border-white/20 py-4 text-white placeholder:text-white/30 focus:outline-none focus:border-accent transition-colors" placeholder="Enter Email..." type="email" />
-                                <button className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-accent transition-colors">
-                                    <span className="material-symbols-outlined">arrow_forward</span>
-                                </button>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 sm:gap-16 w-full md:w-auto">
+                            <div>
+                                <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-4">Address</h4>
+                                <p className="text-white/60 text-sm leading-relaxed">DIFC, Gate Village 5,<br />Dubai, UAE</p>
+                            </div>
+                            <div>
+                                <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-4">Phone</h4>
+                                <p className="text-white/60 text-sm leading-relaxed">+971 4 000 0000<br />+971 50 000 0000</p>
+                            </div>
+                            <div>
+                                <h4 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-4">Email</h4>
+                                <p className="text-white/60 text-sm leading-relaxed">concierge@saha.com<br />medical@saha.com</p>
                             </div>
                         </div>
-                        <div className="lg:col-span-8">
-                            <div className="grid grid-cols-2 md:grid-cols-3 gap-12">
-                                <div>
-                                    <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Pages</h5>
-                                    <ul className="space-y-4">
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Home</a></li>
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Services</a></li>
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Company</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Specialties</h5>
-                                    <ul className="space-y-4">
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Longevity</a></li>
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Aesthetics</a></li>
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Diagnostics</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Utility</h5>
-                                    <ul className="space-y-4">
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">Privacy Policy</a></li>
-                                        <li><a className="text-white/50 hover:text-white text-sm transition-colors" href="#">License</a></li>
-                                    </ul>
+                    </div>
+
+                    <div className="border-t border-white/10 pt-16 mb-20">
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                            <div>
+                                <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Pages</h5>
+                                <ul className="space-y-4">
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Home</a></li>
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Services</a></li>
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Company</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Specialties</h5>
+                                <ul className="space-y-4">
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Longevity</a></li>
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Aesthetics</a></li>
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Diagnostics</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Utility</h5>
+                                <ul className="space-y-4">
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">Privacy Policy</a></li>
+                                    <li><a className="text-white/60 hover:text-white text-sm transition-colors" href="#">License</a></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 className="text-white text-xs font-bold uppercase tracking-[0.2em] mb-8">Newsletter</h5>
+                                <p className="text-white/60 text-sm mb-6 leading-relaxed">Subscribe to our newsletter for the latest medical insights.</p>
+                                <div className="relative">
+                                    <input className="w-full bg-transparent border-b border-white/20 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-white transition-colors text-sm" placeholder="Enter Email" type="email" />
+                                    <button className="absolute right-0 top-1/2 -translate-y-1/2 text-white hover:text-white/70 transition-colors">
+                                        <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="border-t border-white/5 pt-12 mt-12 flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
-                        <p className="text-white/30 text-xs font-normal tracking-wide">
-                            © Copyright 2024 | Saha Medical Medical Group | UAE &amp; Global
+                    <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                        <p className="text-white/40 text-xs font-normal tracking-wide">
+                            © Copyright 2024 | Saha Medical Group | UAE &amp; Global
                         </p>
-                        <p className="text-white/30 text-xs font-normal tracking-wide">
-                            Designed &amp; Developed By <span className="text-white/60">Saha Medical Creative</span>
-                        </p>
+                        <div className="flex items-center gap-6">
+                            <a href="#" className="text-white/40 hover:text-white transition-colors text-xs font-normal tracking-wider uppercase">Instagram</a>
+                            <a href="#" className="text-white/40 hover:text-white transition-colors text-xs font-normal tracking-wider uppercase">LinkedIn</a>
+                            <a href="#" className="text-white/40 hover:text-white transition-colors text-xs font-normal tracking-wider uppercase">Twitter</a>
+                        </div>
                     </div>
                 </div>
             </footer>
