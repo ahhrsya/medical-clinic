@@ -43,7 +43,7 @@ export const Landing = () => {
 
         cards.forEach((card, index) => {
             // High staggered start positions for aggressive overlap effect
-            const yStart = index % 2 === 0 ? 250 : 400;
+            const yStart = index % 2 === 0 ? 350 : 500;
 
             gsap.fromTo(
                 card,
@@ -52,13 +52,13 @@ export const Landing = () => {
                     opacity: 0
                 },
                 {
-                    y: -150, // Pull them way up to overlap the sticky header
+                    y: -200, // Pull them way up to overlap the sticky header
                     opacity: 1,
                     ease: "power2.out",
                     scrollTrigger: {
                         trigger: communityCardsRef.current, // Use the container as the scrub trigger 
-                        start: "top 95%",
-                        end: "top 10%", // Continue animating until container reaches near top
+                        start: "top 80%",
+                        end: "top -10%", // Continue animating until container reaches past top
                         scrub: 1.5, // Smoother scrub
                     }
                 }
@@ -521,39 +521,24 @@ export const Landing = () => {
                     </div>
                 </div>
 
-                {/* Parallax Overlapping Cards */}
-                <div ref={communityCardsRef} className="w-full max-w-[1200px] mx-auto px-8 lg:px-16 relative z-10 mt-[60vh] pb-32">
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-                        {/* Card 1 */}
-                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7]">
-                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
-                                <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={community1Img} />
-                            </div>
-                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">20+ years of experience</span>
-                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Tariq Al-Fayed</h3>
-                            <p className="text-sm text-[#3A4540]">Founder & Chief Surgeon</p>
-                        </div>
+                {/* Parallax Overlapping Images */}
+                <div ref={communityCardsRef} className="w-full max-w-[1440px] mx-auto relative z-10 mt-[50vh] pb-48 flex justify-center items-end gap-4 md:gap-8 px-4">
 
-                        {/* Card 2 */}
-                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7] mt-0 md:mt-24">
-                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
-                                <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={community2Img} />
-                            </div>
-                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">15+ years of experience</span>
-                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Yasmin Mansour</h3>
-                            <p className="text-sm text-[#3A4540]">Consultant Specialist</p>
-                        </div>
-
-                        {/* Card 3 */}
-                        <div className="community-card flex flex-col items-start pb-8 rounded-none shadow-none bg-[#FDFBF7] mt-0 md:mt-12">
-                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
-                                <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={community3Img} />
-                            </div>
-                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">18+ years of experience</span>
-                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Kareem Hassan</h3>
-                            <p className="text-sm text-[#3A4540]">Chief Medical Officer</p>
-                        </div>
+                    {/* Image 1: Left */}
+                    <div className="community-card w-[200px] md:w-[320px] lg:w-[400px] aspect-[3/4] rounded-none shadow-none bg-slate-100 -mt-24 md:-mt-48 relative z-20">
+                        <img alt="Saha Medical Clinic Setup" className="w-full h-full object-cover" src={community1Img} />
                     </div>
+
+                    {/* Image 2: Center (Front overlap) */}
+                    <div className="community-card w-[240px] md:w-[380px] lg:w-[480px] aspect-[4/5] rounded-none shadow-none bg-slate-100 z-30 transform translate-y-12 md:translate-y-24">
+                        <img alt="Saha Medical Concierge" className="w-full h-full object-cover" src={community2Img} />
+                    </div>
+
+                    {/* Image 3: Right */}
+                    <div className="community-card w-[180px] md:w-[280px] lg:w-[360px] aspect-[4/3] rounded-none shadow-none bg-slate-100 -mt-12 md:-mt-32 relative z-10">
+                        <img alt="Saha Medical Patient Care" className="w-full h-full object-cover" src={community3Img} />
+                    </div>
+
                 </div>
             </section>
 
