@@ -527,7 +527,7 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section ref={discoverSectionRef} className="relative w-full bg-[#fcfbf8] text-[#11181C] min-h-[250vh] font-sans tracking-tight border-t border-neutral-100">
+            <section ref={discoverSectionRef} className="relative w-full bg-white text-[#11181C] min-h-[250vh] font-sans tracking-tight border-t border-neutral-100">
                 {/* Sticky Center Text - Ensure CTA remains centered exactly in sticky frame */}
                 <div className="sticky top-0 h-screen overflow-hidden w-full flex flex-col justify-center items-center z-20 pointer-events-none">
                     <div className="relative w-full max-w-xl text-center px-4">
@@ -536,12 +536,12 @@ export const Landing = () => {
                         <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto w-full">
                             <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">START YOUR JOURNEY</h3>
                             <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
-                                Your Health Is<br />Your<br />Greatest Legacy
+                                Your Health Is Your<br />Greatest Legacy
                             </h2>
                             <p className="text-[#4A5D53] text-lg lg:text-xl max-w-[600px] mx-auto mb-12 leading-relaxed font-normal">
                                 Protect what matters most. Join an elite community dedicated to proactive health, long-term vitality, and a future without medical friction.
                             </p>
-                            <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-5 hover:bg-black transition-colors rounded-2xl group text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl">
+                            <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-4 hover:bg-black transition-colors rounded-full group text-base font-medium tracking-wide shadow-lg hover:shadow-xl">
                                 Book Your Private Session
                             </a>
                         </div>
