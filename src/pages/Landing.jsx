@@ -1,5 +1,10 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ScrollReveal } from '../components/ScrollReveal';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 import hero1Img from '../assets/hero-1.jpg';
 import hero2Img from '../assets/hero-2.jpg';
 import hero3Img from '../assets/hero-3.jpg';
@@ -18,6 +23,7 @@ export const Landing = () => {
     const philosophySectionRef = useRef(null);
     const expertsCarouselRef = useRef(null);
     const testimonialsRef = useRef(null);
+    const communityCardsRef = useRef(null);
     const [isTestimonialsHovered, setIsTestimonialsHovered] = useState(false);
     const [activeSpecialty, setActiveSpecialty] = useState(0);
     const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -30,6 +36,37 @@ export const Landing = () => {
         }, 5000);
         return () => clearInterval(timer);
     }, [heroSlides.length]);
+
+    useEffect(() => {
+        if (!communityCardsRef.current) return;
+        const cards = communityCardsRef.current.querySelectorAll('.community-card');
+
+        cards.forEach((card, index) => {
+            const yStart = index === 1 ? -120 : -60;
+            const yEnd = index === 1 ? 120 : 60;
+
+            gsap.fromTo(
+                card,
+                { y: yStart },
+                {
+                    y: yEnd,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: communityCardsRef.current,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true,
+                    }
+                }
+            );
+        });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(t => {
+                if (t.trigger === communityCardsRef.current) t.kill();
+            });
+        };
+    }, []);
 
     const specialtiesData = [
         {
@@ -459,7 +496,7 @@ export const Landing = () => {
 
             <section className="py-32 lg:py-48 bg-[#FDFBF7] overflow-hidden relative min-h-[900px] flex items-center flex-col justify-center">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center flex flex-col items-center">
-                    <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 inline-block">
+                    <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-none text-xs font-semibold tracking-wide mb-8 inline-block">
                         Community
                     </span>
                     <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-[#11181C] tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto">
@@ -470,31 +507,47 @@ export const Landing = () => {
                         From preventive care to advanced treatments, we offer a full range of medical services designed to keep your health optimal and confident.
                     </p>
                     <div className="flex justify-center">
-                        <a href="#apply" className="flex items-center bg-white border border-slate-200 rounded-full p-1.5 pr-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
+                        <a href="#apply" className="flex items-center bg-white border border-slate-200 rounded-none p-1.5 pr-1.5 hover:-translate-y-0.5 transition-transform group">
                             <span className="px-6 py-2 text-sm font-semibold text-[#11181C]">Book your appointment</span>
-                            <div className="bg-[#11181C] rounded-full w-10 h-10 flex items-center justify-center text-white group-hover:bg-[#3A5F4B] transition-colors">
+                            <div className="bg-[#11181C] w-10 h-10 flex items-center justify-center text-white group-hover:bg-[#3A5F4B] transition-colors rounded-none">
                                 <span className="material-symbols-outlined text-xl">arrow_forward</span>
                             </div>
                         </a>
                     </div>
                 </div>
-                <div className="absolute top-10 left-[8%] w-24 h-32 md:w-32 md:h-44 rounded-3xl overflow-hidden shadow-2xl rotate-[-6deg] opacity-80 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 1" className="w-full h-full object-cover" src={community1Img} />
-                </div>
-                <div className="absolute top-20 right-[18%] w-16 h-16 md:w-28 md:h-28 rounded-full overflow-hidden shadow-2xl rotate-[12deg] opacity-60 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 2" className="w-full h-full object-cover" src={community2Img} />
-                </div>
-                <div className="absolute top-1/2 left-[2%] -translate-y-1/2 w-28 h-40 md:w-44 md:h-56 rounded-[2.5rem] overflow-hidden shadow-2xl rotate-[4deg] opacity-70 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 3" className="w-full h-full object-cover" src={community3Img} />
-                </div>
-                <div className="absolute top-[40%] right-[2%] w-24 h-32 md:w-36 md:h-48 rounded-[2rem] overflow-hidden shadow-2xl rotate-[-8deg] opacity-70 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 4" className="w-full h-full object-cover" src={community4Img} />
-                </div>
-                <div className="absolute bottom-12 left-[22%] w-20 h-28 md:w-32 md:h-40 rounded-[1.5rem] overflow-hidden shadow-2xl rotate-[15deg] opacity-60 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 5" className="w-full h-full object-cover" src={community1Img} />
-                </div>
-                <div className="absolute bottom-8 right-[12%] w-32 h-40 md:w-48 md:h-60 rounded-[3rem] overflow-hidden shadow-2xl rotate-[3deg] opacity-80 lg:opacity-100 transition-transform hover:scale-105 duration-700">
-                    <img alt="Saha Medical Member 6" className="w-full h-full object-cover" src={community2Img} />
+
+                <div ref={communityCardsRef} className="w-full max-w-[1200px] mx-auto px-8 lg:px-16 relative z-10 mt-16 pb-32">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {/* Card 1 */}
+                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none">
+                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
+                                <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={community1Img} />
+                            </div>
+                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">20+ years of experience</span>
+                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Tariq Al-Fayed</h3>
+                            <p className="text-sm text-[#3A4540]">Founder & Chief Surgeon</p>
+                        </div>
+
+                        {/* Card 2 */}
+                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none mt-0 md:mt-12">
+                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
+                                <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={community2Img} />
+                            </div>
+                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">15+ years of experience</span>
+                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Yasmin Mansour</h3>
+                            <p className="text-sm text-[#3A4540]">Consultant Specialist</p>
+                        </div>
+
+                        {/* Card 3 */}
+                        <div className="community-card bg-white flex flex-col items-center pb-8 border border-neutral-100 rounded-none shadow-none">
+                            <div className="w-full aspect-[4/5] overflow-hidden mb-6 rounded-none shadow-none bg-slate-50">
+                                <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={community3Img} />
+                            </div>
+                            <span className="bg-[#EAECE8] text-[#4A5D53] px-3 py-1 rounded-none text-[10px] font-semibold uppercase tracking-wider mb-4 border border-neutral-200">18+ years of experience</span>
+                            <h3 className="text-xl font-semibold text-[#11181C] mb-1">Dr. Kareem Hassan</h3>
+                            <p className="text-sm text-[#3A4540]">Chief Medical Officer</p>
+                        </div>
+                    </div>
                 </div>
             </section>
 
