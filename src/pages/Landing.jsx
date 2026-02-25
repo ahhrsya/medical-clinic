@@ -42,20 +42,24 @@ export const Landing = () => {
         const cards = communityCardsRef.current.querySelectorAll('.community-card');
 
         cards.forEach((card, index) => {
-            const yStart = index === 1 ? -120 : -60;
-            const yEnd = index === 1 ? 120 : 60;
+            // Give them a staggered start position (further down) and start them invisible
+            const yStart = index === 1 ? 150 : 80;
 
             gsap.fromTo(
                 card,
-                { y: yStart },
                 {
-                    y: yEnd,
-                    ease: "none",
+                    y: yStart,
+                    opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    ease: "power2.out", // Smooth easing instead of linear scrub
                     scrollTrigger: {
-                        trigger: communityCardsRef.current,
-                        start: "top bottom",
-                        end: "bottom top",
-                        scrub: true,
+                        trigger: card, // Trigger on each individual card
+                        start: "top 85%", // When the top of the card hits 85% from the top of the viewport
+                        end: "top 45%",
+                        scrub: 1, // Add some smoothing to the scrub
                     }
                 }
             );
@@ -63,7 +67,9 @@ export const Landing = () => {
 
         return () => {
             ScrollTrigger.getAll().forEach(t => {
-                if (t.trigger === communityCardsRef.current) t.kill();
+                // We triggered on the cards directly now, not the parent ref
+                const isCardTrigger = Array.from(cards).some(c => t.trigger === c);
+                if (isCardTrigger) t.kill();
             });
         };
     }, []);
@@ -494,7 +500,7 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-[#FDFBF7] overflow-hidden relative min-h-[900px] flex items-center flex-col justify-center">
+            <section className="py-32 lg:py-48 bg-[#FDFBF7] overflow-hidden relative min-h-[900px] flex items-center flex-col justify-center font-sans tracking-tight">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center flex flex-col items-center">
                     <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-none text-xs font-semibold tracking-wide mb-8 inline-block">
                         Community
