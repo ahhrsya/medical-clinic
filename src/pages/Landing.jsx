@@ -555,30 +555,30 @@ export const Landing = () => {
                     <div className="relative w-full max-w-xl text-center px-4">
 
                         {/* Text Block 1 */}
-                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto">
-                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-normal text-primary tracking-tight mb-6 leading-tight">
-                                Gentle Beginnings
+                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto w-full">
+                            <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">START YOUR JOURNEY</h3>
+                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
+                                Your Health Is Your<br />Greatest Legacy
                             </h2>
-                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-10 leading-relaxed font-normal">
-                                Begin your day with light and stillness. Step outside to find cafés, morning trails, and the soft hum of a neighborhood waking up.
+                            <p className="text-[#4A5D53] text-lg lg:text-xl max-w-[600px] mx-auto mb-12 leading-relaxed font-normal">
+                                Protect what matters most. Join an elite community dedicated to proactive health, long-term vitality, and a future without medical friction.
                             </p>
-                            <a href="#" className="flex items-center bg-primary text-white px-8 py-4 hover:bg-black transition-colors rounded-none group text-sm font-semibold tracking-wide shadow-none">
-                                Discover What's Around
-                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-5 hover:bg-black transition-colors rounded-2xl group text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl">
+                                Book Your Private Session
                             </a>
                         </div>
 
                         {/* Text Block 2 */}
-                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[30px]">
-                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-normal text-primary tracking-tight mb-6 leading-tight">
-                                Afternoon Strolls
+                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[30px] w-full">
+                            <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">SECURE YOUR FUTURE</h3>
+                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
+                                A Partner For Your<br />Long-Term Vision
                             </h2>
-                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-10 leading-relaxed font-normal">
-                                Explore the scenic paths and local artisanal boutiques. The neighborhood offers a perfect blend of relaxation and quiet discovery.
+                            <p className="text-[#4A5D53] text-lg lg:text-xl max-w-[600px] mx-auto mb-12 leading-relaxed font-normal">
+                                Experience preventative medicine designed around your lifestyle. Our specialists are here to ensure you perform at your peak, every single day.
                             </p>
-                            <a href="#" className="flex items-center bg-primary text-white px-8 py-4 hover:bg-black transition-colors rounded-none group text-sm font-semibold tracking-wide shadow-none">
-                                Explore Neighborhood
-                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-5 hover:bg-black transition-colors rounded-2xl group text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl">
+                                Become A Member
                             </a>
                         </div>
                     </div>
@@ -588,31 +588,45 @@ export const Landing = () => {
                 <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden">
                     <div className="max-w-[1440px] mx-auto h-full relative">
 
-                        {/* Image 1 (Left) */}
-                        <div className="absolute top-[10vh] left-[5%] md:left-[10%] w-[45%] md:w-[30%] lg:w-[25%] flex flex-col">
+                        {/* Image 1 (Left High) */}
+                        <div className="absolute top-[5vh] left-[2%] md:left-[5%] w-[35%] md:w-[25%] lg:w-[20%] flex flex-col">
                             <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
-                                <img src={aboutImg} alt="Carmel Beach" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                                <img src={community1Img} alt="Patient Care" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
                             </div>
                         </div>
 
-                        {/* Image 2 (Right) */}
-                        <div className="absolute top-[60vh] right-[5%] md:right-[10%] w-[40%] md:w-[28%] lg:w-[22%] flex flex-col">
-                            <div className="w-full aspect-[3/5] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
-                                <img src={section3Img} alt="The Stationaery Café" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
-                            </div>
-                        </div>
-
-                        {/* Image 3 (Left) */}
-                        <div className="absolute top-[130vh] left-[8%] md:left-[15%] w-[35%] md:w-[25%] lg:w-[20%] flex flex-col">
+                        {/* Image 2 (Right High) */}
+                        <div className="absolute top-[25vh] right-[2%] md:right-[5%] w-[30%] md:w-[22%] lg:w-[18%] flex flex-col">
                             <div className="w-full aspect-[4/5] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
-                                <img src={hero2Img} alt="Ocean Walkway" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                                <img src={community3Img} alt="Family Health" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
                             </div>
                         </div>
 
-                        {/* Image 4 (Right) */}
-                        <div className="absolute top-[180vh] right-[8%] md:right-[15%] w-[40%] md:w-[35%] lg:w-[28%] flex flex-col">
+                        {/* Image 3 (Left Mid) */}
+                        <div className="absolute top-[80vh] left-[8%] md:left-[12%] w-[40%] md:w-[28%] lg:w-[22%] flex flex-col">
+                            <div className="w-full aspect-[3/5] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={doctor2Img} alt="Doctor Consultation" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
+                        {/* Image 4 (Right Mid) */}
+                        <div className="absolute top-[110vh] right-[6%] md:right-[10%] w-[35%] md:w-[26%] lg:w-[20%] flex flex-col">
+                            <div className="w-full aspect-[1/1] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={doctor1Img} alt="Specialist" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
+                        {/* Image 5 (Left Low) */}
+                        <div className="absolute top-[150vh] left-[4%] md:left-[8%] w-[30%] md:w-[24%] lg:w-[18%] flex flex-col">
                             <div className="w-full aspect-[4/3] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
-                                <img src={doctor3Img} alt="Evening Sunset" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                                <img src={community2Img} alt="Team" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
+                        {/* Image 6 (Right Low) */}
+                        <div className="absolute top-[180vh] right-[8%] md:right-[12%] w-[45%] md:w-[32%] lg:w-[26%] flex flex-col">
+                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={doctor4Img} alt="Research" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
                             </div>
                         </div>
 
