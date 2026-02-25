@@ -25,8 +25,6 @@ export const Landing = () => {
     const testimonialsRef = useRef(null);
     const communityCardsRef = useRef(null);
     const discoverSectionRef = useRef(null);
-    const discoverText1Ref = useRef(null);
-    const discoverText2Ref = useRef(null);
     const [isTestimonialsHovered, setIsTestimonialsHovered] = useState(false);
     const [activeSpecialty, setActiveSpecialty] = useState(0);
     const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -113,27 +111,7 @@ export const Landing = () => {
         }
     };
 
-    useEffect(() => {
-        if (!discoverSectionRef.current) return;
-
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: discoverSectionRef.current,
-                start: "top top",
-                end: "bottom bottom",
-                scrub: 1,
-            }
-        });
-
-        tl.to(discoverText1Ref.current, { opacity: 0, y: -30, duration: 1, ease: "power2.inOut" }, 1.5);
-        tl.fromTo(discoverText2Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 2);
-
-        return () => {
-            ScrollTrigger.getAll().forEach(t => {
-                if (t.trigger === discoverSectionRef.current) t.kill();
-            });
-        };
-    }, []);
+    // Discover Section GSAP text animations removed as per request (text stays static while images scroll)
 
     const testimonialsData = [
         {
@@ -554,8 +532,8 @@ export const Landing = () => {
                 <div className="sticky top-0 h-screen overflow-hidden w-full flex flex-col justify-center items-center z-20 pointer-events-none">
                     <div className="relative w-full max-w-xl text-center px-4">
 
-                        {/* Text Block 1 */}
-                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto w-full">
+                        {/* CTA Text Block */}
+                        <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto w-full">
                             <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">START YOUR JOURNEY</h3>
                             <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
                                 Your Health Is Your<br />Greatest Legacy
@@ -565,20 +543,6 @@ export const Landing = () => {
                             </p>
                             <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-5 hover:bg-black transition-colors rounded-2xl group text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl">
                                 Book Your Private Session
-                            </a>
-                        </div>
-
-                        {/* Text Block 2 */}
-                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[30px] w-full">
-                            <h3 className="text-secondary text-sm font-bold uppercase tracking-[0.2em] mb-6 text-[#1A2530]">SECURE YOUR FUTURE</h3>
-                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-primary tracking-tight mb-8 leading-[1.1] max-w-4xl mx-auto">
-                                A Partner For Your<br />Long-Term Vision
-                            </h2>
-                            <p className="text-[#4A5D53] text-lg lg:text-xl max-w-[600px] mx-auto mb-12 leading-relaxed font-normal">
-                                Experience preventative medicine designed around your lifestyle. Our specialists are here to ensure you perform at your peak, every single day.
-                            </p>
-                            <a href="#book" className="flex items-center bg-[#0F172A] text-white px-10 py-5 hover:bg-black transition-colors rounded-2xl group text-lg font-semibold tracking-wide shadow-lg hover:shadow-xl">
-                                Become A Member
                             </a>
                         </div>
                     </div>
