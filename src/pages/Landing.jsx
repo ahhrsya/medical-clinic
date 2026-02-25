@@ -24,6 +24,9 @@ export const Landing = () => {
     const expertsCarouselRef = useRef(null);
     const testimonialsRef = useRef(null);
     const communityCardsRef = useRef(null);
+    const discoverSectionRef = useRef(null);
+    const discoverText1Ref = useRef(null);
+    const discoverText2Ref = useRef(null);
     const [isTestimonialsHovered, setIsTestimonialsHovered] = useState(false);
     const [activeSpecialty, setActiveSpecialty] = useState(0);
     const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
@@ -109,6 +112,37 @@ export const Landing = () => {
             });
         }
     };
+
+    useEffect(() => {
+        if (!discoverSectionRef.current) return;
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: discoverSectionRef.current,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true,
+            }
+        });
+
+        // 0 to 4: Text 1 is visible
+        tl.to({}, { duration: 4 });
+
+        // 4 to 5: Text 1 fades out and moves up
+        tl.to(discoverText1Ref.current, { opacity: 0, y: -20, duration: 1 }, 4);
+
+        // 5 to 6: Text 2 fades in from below
+        tl.fromTo(discoverText2Ref.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1 }, 5);
+
+        // 6 to 10: Text 2 remains visible
+        tl.to({}, { duration: 4 });
+
+        return () => {
+            ScrollTrigger.getAll().forEach(t => {
+                if (t.trigger === discoverSectionRef.current) t.kill();
+            });
+        };
+    }, []);
 
     const testimonialsData = [
         {
@@ -539,6 +573,81 @@ export const Landing = () => {
                         <img alt="Saha Medical Patient Care" className="w-full h-full object-cover" src={community3Img} />
                     </div>
 
+                </div>
+            </section>
+
+            <section ref={discoverSectionRef} className="relative w-full bg-[#fcfbf8] text-[#11181C] min-h-[300vh] font-sans tracking-tight border-t border-neutral-100">
+                {/* Sticky Center Text */}
+                <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center z-20 pointer-events-none">
+                    <div className="relative w-full max-w-xl text-center px-4">
+
+                        {/* Text Block 1 */}
+                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal font-serif tracking-tight mb-6">
+                                Gentle Beginnings
+                            </h2>
+                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-8 leading-relaxed font-normal">
+                                Begin your day with light and stillness. Step outside to find cafés, morning trails, and the soft hum of a neighborhood waking up.
+                            </p>
+                            <a href="#" className="flex items-center bg-[#292621] text-[#FDFBF7] px-6 py-3 hover:bg-[#1A1815] transition-colors rounded-none group text-sm font-medium">
+                                Discover What's Around
+                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">chevron_right</span>
+                            </a>
+                        </div>
+
+                        {/* Text Block 2 */}
+                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[20px]">
+                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal font-serif tracking-tight mb-6">
+                                Afternoon Strolls
+                            </h2>
+                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-8 leading-relaxed font-normal">
+                                Explore the scenic paths and local artisanal boutiques. The neighborhood offers a perfect blend of relaxation and quiet discovery.
+                            </p>
+                            <a href="#" className="flex items-center bg-[#292621] text-[#FDFBF7] px-6 py-3 hover:bg-[#1A1815] transition-colors rounded-none group text-sm font-medium">
+                                Explore Neighborhood
+                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">chevron_right</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scrolling Images Container */}
+                <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden">
+                    <div className="max-w-[1440px] mx-auto h-full relative">
+
+                        {/* Image 1 (Left) */}
+                        <div className="absolute top-[20vh] left-[5%] md:left-[10%] w-[45%] md:w-[35%] lg:w-[28%] flex flex-col gap-4">
+                            <div className="w-full aspect-[3/2] bg-slate-100 rounded-none overflow-hidden">
+                                <img src={aboutImg} alt="Carmel Beach" className="w-full h-full object-cover" />
+                            </div>
+                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Carmel Beach</p>
+                        </div>
+
+                        {/* Image 2 (Right) */}
+                        <div className="absolute top-[80vh] right-[5%] md:right-[10%] w-[40%] md:w-[30%] lg:w-[24%] flex flex-col gap-4">
+                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden">
+                                <img src={section3Img} alt="The Stationaery Café" className="w-full h-full object-cover" />
+                            </div>
+                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">The Stationaery Café</p>
+                        </div>
+
+                        {/* Image 3 (Left) */}
+                        <div className="absolute top-[170vh] left-[8%] md:left-[15%] w-[35%] md:w-[25%] lg:w-[20%] flex flex-col gap-4">
+                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden">
+                                <img src={hero2Img} alt="Ocean Walkway" className="w-full h-full object-cover" />
+                            </div>
+                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Ocean Walkway</p>
+                        </div>
+
+                        {/* Image 4 (Right) */}
+                        <div className="absolute top-[230vh] right-[8%] md:right-[15%] w-[40%] md:w-[35%] lg:w-[30%] flex flex-col gap-4">
+                            <div className="w-full aspect-[4/3] bg-slate-100 rounded-none overflow-hidden">
+                                <img src={doctor3Img} alt="Evening Sunset" className="w-full h-full object-cover" />
+                            </div>
+                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Evening Sunset</p>
+                        </div>
+
+                    </div>
                 </div>
             </section>
 
