@@ -457,15 +457,24 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white overflow-hidden relative">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center">
-                    <span className="text-accent text-xs font-normal tracking-[0.4em] uppercase block mb-8">Membership</span>
-                    <h2 className="text-4xl md:text-5xl lg:text-[4rem] font-normal text-primary tracking-tight leading-none mb-16 max-w-4xl mx-auto">
-                        Join Our Global<br />Saha Medical Community
+            <section className="py-32 lg:py-48 bg-[#FDFBF7] overflow-hidden relative min-h-[900px] flex items-center flex-col justify-center">
+                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 relative z-10 text-center flex flex-col items-center">
+                    <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-full text-xs font-semibold tracking-wide mb-8 inline-block">
+                        Community
+                    </span>
+                    <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-[#11181C] tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto">
+                        Your care begins with<br />
+                        <span className="italic font-serif text-[#3A5F4B] font-normal tracking-normal text-[1.1em]">the right people</span>
                     </h2>
+                    <p className="text-[#3A4540] text-lg lg:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+                        From preventive care to advanced treatments, we offer a full range of medical services designed to keep your health optimal and confident.
+                    </p>
                     <div className="flex justify-center">
-                        <a className="bg-primary hover:bg-blue-900 text-white px-14 py-6 rounded-full text-base font-normal tracking-widest uppercase transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1" href="#apply">
-                            Apply for Membership
+                        <a href="#apply" className="flex items-center bg-white border border-slate-200 rounded-full p-1.5 pr-1.5 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all group">
+                            <span className="px-6 py-2 text-sm font-semibold text-[#11181C]">Book your appointment</span>
+                            <div className="bg-[#11181C] rounded-full w-10 h-10 flex items-center justify-center text-white group-hover:bg-[#3A5F4B] transition-colors">
+                                <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                            </div>
                         </a>
                     </div>
                 </div>
