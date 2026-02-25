@@ -121,21 +121,12 @@ export const Landing = () => {
                 trigger: discoverSectionRef.current,
                 start: "top top",
                 end: "bottom bottom",
-                scrub: true,
+                scrub: 1,
             }
         });
 
-        // 0 to 4: Text 1 is visible
-        tl.to({}, { duration: 4 });
-
-        // 4 to 5: Text 1 fades out and moves up
-        tl.to(discoverText1Ref.current, { opacity: 0, y: -20, duration: 1 }, 4);
-
-        // 5 to 6: Text 2 fades in from below
-        tl.fromTo(discoverText2Ref.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1 }, 5);
-
-        // 6 to 10: Text 2 remains visible
-        tl.to({}, { duration: 4 });
+        tl.to(discoverText1Ref.current, { opacity: 0, y: -30, duration: 1, ease: "power2.inOut" }, 1.5);
+        tl.fromTo(discoverText2Ref.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 2);
 
         return () => {
             ScrollTrigger.getAll().forEach(t => {
@@ -532,125 +523,6 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-20 lg:py-32 bg-[#FDFBF7] overflow-hidden relative min-h-[160vh] font-sans tracking-tight">
-                {/* Sticky Header Layer */}
-                <div className="sticky top-[20vh] max-w-[1440px] mx-auto px-8 lg:px-16 z-0 text-center flex flex-col items-center">
-                    <span className="bg-[#EAECE8] text-[#4A5D53] px-5 py-1.5 rounded-none text-xs font-semibold tracking-wide mb-8 inline-block">
-                        Community
-                    </span>
-                    <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-medium text-[#11181C] tracking-tight leading-[1.1] mb-8 max-w-4xl mx-auto">
-                        Your care begins with<br />
-                        <span className="italic font-serif text-[#3A5F4B] font-normal tracking-normal text-[1.1em]">the right people</span>
-                    </h2>
-                    <p className="text-[#3A4540] text-lg lg:text-xl max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
-                        From preventive care to advanced treatments, we offer a full range of medical services designed to keep your health optimal and confident.
-                    </p>
-                    <div className="flex justify-center">
-                        <a href="#apply" className="flex items-center bg-white border border-slate-200 rounded-none p-1.5 pr-1.5 hover:-translate-y-0.5 transition-transform group">
-                            <span className="px-6 py-2 text-sm font-semibold text-[#11181C]">Book your appointment</span>
-                            <div className="bg-[#11181C] w-10 h-10 flex items-center justify-center text-white group-hover:bg-[#3A5F4B] transition-colors rounded-none">
-                                <span className="material-symbols-outlined text-xl">arrow_forward</span>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-
-                {/* Parallax Overlapping Images */}
-                <div ref={communityCardsRef} className="w-full max-w-[1440px] mx-auto relative z-10 mt-[50vh] pb-48 flex justify-center items-end gap-4 md:gap-8 px-4">
-
-                    {/* Image 1: Left */}
-                    <div className="community-card w-[200px] md:w-[320px] lg:w-[400px] aspect-[3/4] rounded-none shadow-none bg-slate-100 -mt-24 md:-mt-48 relative z-20">
-                        <img alt="Saha Medical Clinic Setup" className="w-full h-full object-cover" src={community1Img} />
-                    </div>
-
-                    {/* Image 2: Center (Front overlap) */}
-                    <div className="community-card w-[240px] md:w-[380px] lg:w-[480px] aspect-[4/5] rounded-none shadow-none bg-slate-100 z-30 transform translate-y-12 md:translate-y-24">
-                        <img alt="Saha Medical Concierge" className="w-full h-full object-cover" src={community2Img} />
-                    </div>
-
-                    {/* Image 3: Right */}
-                    <div className="community-card w-[180px] md:w-[280px] lg:w-[360px] aspect-[4/3] rounded-none shadow-none bg-slate-100 -mt-12 md:-mt-32 relative z-10">
-                        <img alt="Saha Medical Patient Care" className="w-full h-full object-cover" src={community3Img} />
-                    </div>
-
-                </div>
-            </section>
-
-            <section ref={discoverSectionRef} className="relative w-full bg-[#fcfbf8] text-[#11181C] min-h-[300vh] font-sans tracking-tight border-t border-neutral-100">
-                {/* Sticky Center Text */}
-                <div className="sticky top-0 h-screen w-full flex flex-col justify-center items-center z-20 pointer-events-none">
-                    <div className="relative w-full max-w-xl text-center px-4">
-
-                        {/* Text Block 1 */}
-                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto">
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal font-serif tracking-tight mb-6">
-                                Gentle Beginnings
-                            </h2>
-                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-8 leading-relaxed font-normal">
-                                Begin your day with light and stillness. Step outside to find cafés, morning trails, and the soft hum of a neighborhood waking up.
-                            </p>
-                            <a href="#" className="flex items-center bg-[#292621] text-[#FDFBF7] px-6 py-3 hover:bg-[#1A1815] transition-colors rounded-none group text-sm font-medium">
-                                Discover What's Around
-                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">chevron_right</span>
-                            </a>
-                        </div>
-
-                        {/* Text Block 2 */}
-                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[20px]">
-                            <h2 className="text-4xl md:text-5xl lg:text-6xl font-normal font-serif tracking-tight mb-6">
-                                Afternoon Strolls
-                            </h2>
-                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-8 leading-relaxed font-normal">
-                                Explore the scenic paths and local artisanal boutiques. The neighborhood offers a perfect blend of relaxation and quiet discovery.
-                            </p>
-                            <a href="#" className="flex items-center bg-[#292621] text-[#FDFBF7] px-6 py-3 hover:bg-[#1A1815] transition-colors rounded-none group text-sm font-medium">
-                                Explore Neighborhood
-                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">chevron_right</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                {/* Scrolling Images Container */}
-                <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden">
-                    <div className="max-w-[1440px] mx-auto h-full relative">
-
-                        {/* Image 1 (Left) */}
-                        <div className="absolute top-[20vh] left-[5%] md:left-[10%] w-[45%] md:w-[35%] lg:w-[28%] flex flex-col gap-4">
-                            <div className="w-full aspect-[3/2] bg-slate-100 rounded-none overflow-hidden">
-                                <img src={aboutImg} alt="Carmel Beach" className="w-full h-full object-cover" />
-                            </div>
-                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Carmel Beach</p>
-                        </div>
-
-                        {/* Image 2 (Right) */}
-                        <div className="absolute top-[80vh] right-[5%] md:right-[10%] w-[40%] md:w-[30%] lg:w-[24%] flex flex-col gap-4">
-                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden">
-                                <img src={section3Img} alt="The Stationaery Café" className="w-full h-full object-cover" />
-                            </div>
-                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">The Stationaery Café</p>
-                        </div>
-
-                        {/* Image 3 (Left) */}
-                        <div className="absolute top-[170vh] left-[8%] md:left-[15%] w-[35%] md:w-[25%] lg:w-[20%] flex flex-col gap-4">
-                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden">
-                                <img src={hero2Img} alt="Ocean Walkway" className="w-full h-full object-cover" />
-                            </div>
-                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Ocean Walkway</p>
-                        </div>
-
-                        {/* Image 4 (Right) */}
-                        <div className="absolute top-[230vh] right-[8%] md:right-[15%] w-[40%] md:w-[35%] lg:w-[30%] flex flex-col gap-4">
-                            <div className="w-full aspect-[4/3] bg-slate-100 rounded-none overflow-hidden">
-                                <img src={doctor3Img} alt="Evening Sunset" className="w-full h-full object-cover" />
-                            </div>
-                            <p className="text-center text-[#292621] text-base font-normal tracking-wide">Evening Sunset</p>
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-
             <section className="py-32 lg:py-48 bg-white overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
                     <h2 className="text-5xl md:text-6xl font-normal text-primary mb-20 tracking-tight">What Our Clients Say</h2>
@@ -677,56 +549,73 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-32 lg:py-48 bg-white">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <div className="bg-primary rounded-[3rem] overflow-hidden relative min-h-[600px] flex items-center shadow-2xl">
-                        <div className="absolute top-0 right-0 w-1/2 h-full opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-accent/40 via-transparent to-transparent"></div>
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full p-12 lg:p-24 relative z-10">
-                            <div className="flex flex-col justify-center">
-                                <h2 className="text-white text-5xl lg:text-7xl font-normal leading-[1.1] tracking-tight mb-6">
-                                    Download the<br />Saha Medical Experience
-                                </h2>
-                                <p className="text-white/70 text-lg lg:text-xl font-normal max-w-md mb-12 leading-relaxed">
-                                    Manage your health journey with absolute precision from anywhere in the world. Real-time access to your concierge team and premium health analytics.
-                                </p>
-                                <div className="flex flex-wrap gap-4 mb-20">
-                                    <a className="bg-accent hover:bg-accent/90 text-primary px-10 py-5 rounded-full text-base font-semibold transition-all shadow-lg hover:shadow-xl" href="#">
-                                        Get Started
-                                    </a>
-                                    <a className="border border-white/30 hover:border-white text-white px-10 py-5 rounded-full text-base font-semibold flex items-center gap-2 transition-all backdrop-blur-sm" href="#">
-                                        <span className="material-symbols-outlined">play_circle</span> Watch Demo
-                                    </a>
-                                </div>
-                                <div className="flex flex-col gap-2">
-                                    <div className="flex gap-1 text-accent">
-                                        <span className="material-symbols-outlined !text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                                        <span className="material-symbols-outlined !text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                                        <span className="material-symbols-outlined !text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                                        <span className="material-symbols-outlined !text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-                                        <span className="material-symbols-outlined !text-xl" style={{ fontVariationSettings: "'FILL' 1" }}>star_half</span>
-                                    </div>
-                                    <p className="text-white/60 text-sm tracking-wide uppercase font-medium">4.9/5 from our global members</p>
-                                </div>
-                            </div>
-                            <div className="relative h-[400px] lg:h-full flex items-center justify-center lg:justify-end">
-                                <div className="relative w-full max-w-[500px]">
-                                    <div className="absolute right-12 top-0 w-64 aspect-[9/18.5] bg-background-dark rounded-[3rem] border-8 border-slate-800 shadow-2xl rotate-[15deg] overflow-hidden transform translate-y-8">
-                                        <img alt="App Interface" className="w-full h-full object-cover opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiP77o8mzgii1vx7oUF8IN7lbQcfCIw5xl_s9w0QYKJjdZ3SVe2LdYB92axUEkLbNwfHoS3Qz50VNeM6s2JNeWJMPF_jxgacNfzdXov8ES9ayik7i5KCutneOL1Ba51xhC160PC3kJmVKLBMgFgN7G_k6qnDvyaltaLV_FNpjzV6CoTYsZvbl3Z0OY_34k1tnCx3aW7GsZrc2kOFM8-JyhOhWZ_1XJWp2lFsFo8xVxIb0HSaL-J1XcP1Q8HSEj3UrfJjxOMmEx390" />
-                                    </div>
-                                    <div className="relative z-20 w-64 aspect-[9/18.5] bg-background-dark rounded-[3rem] border-8 border-slate-800 shadow-2xl rotate-[-5deg] overflow-hidden translate-x-12 lg:translate-x-0">
-                                        <div className="absolute inset-0 bg-gradient-to-b from-primary/20 to-transparent"></div>
-                                        <img alt="App Dashboard" className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZue6ccNZDKxvFA6HWsxCJGMwfuv9jR0iw3gEipn8cG8rx_K9JeMPSwXUt_sHCGGU_psPt26oCVA2-oPUX7ly5Ce6q9vO_neQ_Qq9VJt_0QFU_iZp712C7uSoeesC7AGl57GhEuTqM7d_uLyi_ph6LvJBSCXgYhu9qLauTwGh8KwsLeWF5o7Gn4f9ey4JRLVYHas5XtedKMVVcxBHdJk_YO4ZAdgkLN9lMJuHTYcN_L0BwmjYNdeQ8xkObPooRlDD_kPjz4ElDZPc" />
-                                        <div className="absolute bottom-6 left-6 right-6 p-4 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20">
-                                            <p className="text-white text-[10px] uppercase tracking-widest mb-1">Vital Signs</p>
-                                            <div className="flex items-end gap-2">
-                                                <span className="text-2xl text-white font-light">98%</span>
-                                                <span className="text-[10px] text-emerald-400 mb-1">Optimum</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+            <section ref={discoverSectionRef} className="relative w-full bg-[#fcfbf8] text-[#11181C] min-h-[250vh] font-sans tracking-tight border-t border-neutral-100">
+                {/* Sticky Center Text - Ensure CTA remains centered exactly in sticky frame */}
+                <div className="sticky top-0 h-screen overflow-hidden w-full flex flex-col justify-center items-center z-20 pointer-events-none">
+                    <div className="relative w-full max-w-xl text-center px-4">
+
+                        {/* Text Block 1 */}
+                        <div ref={discoverText1Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto">
+                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-normal text-primary tracking-tight mb-6 leading-tight">
+                                Gentle Beginnings
+                            </h2>
+                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-10 leading-relaxed font-normal">
+                                Begin your day with light and stillness. Step outside to find cafés, morning trails, and the soft hum of a neighborhood waking up.
+                            </p>
+                            <a href="#" className="flex items-center bg-primary text-white px-8 py-4 hover:bg-black transition-colors rounded-none group text-sm font-semibold tracking-wide shadow-none">
+                                Discover What's Around
+                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+
+                        {/* Text Block 2 */}
+                        <div ref={discoverText2Ref} className="absolute inset-x-0 top-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-auto opacity-0 translate-y-[30px]">
+                            <h2 className="text-5xl md:text-6xl lg:text-[5rem] font-normal text-primary tracking-tight mb-6 leading-tight">
+                                Afternoon Strolls
+                            </h2>
+                            <p className="text-[#4A5D53] text-base lg:text-lg max-w-[360px] mx-auto mb-10 leading-relaxed font-normal">
+                                Explore the scenic paths and local artisanal boutiques. The neighborhood offers a perfect blend of relaxation and quiet discovery.
+                            </p>
+                            <a href="#" className="flex items-center bg-primary text-white px-8 py-4 hover:bg-black transition-colors rounded-none group text-sm font-semibold tracking-wide shadow-none">
+                                Explore Neighborhood
+                                <span className="material-symbols-outlined ml-2 text-lg transform group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Scrolling Images Container */}
+                <div className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden">
+                    <div className="max-w-[1440px] mx-auto h-full relative">
+
+                        {/* Image 1 (Left) */}
+                        <div className="absolute top-[10vh] left-[5%] md:left-[10%] w-[45%] md:w-[30%] lg:w-[25%] flex flex-col">
+                            <div className="w-full aspect-[3/4] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={aboutImg} alt="Carmel Beach" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
                             </div>
                         </div>
+
+                        {/* Image 2 (Right) */}
+                        <div className="absolute top-[60vh] right-[5%] md:right-[10%] w-[40%] md:w-[28%] lg:w-[22%] flex flex-col">
+                            <div className="w-full aspect-[3/5] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={section3Img} alt="The Stationaery Café" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
+                        {/* Image 3 (Left) */}
+                        <div className="absolute top-[130vh] left-[8%] md:left-[15%] w-[35%] md:w-[25%] lg:w-[20%] flex flex-col">
+                            <div className="w-full aspect-[4/5] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={hero2Img} alt="Ocean Walkway" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
+                        {/* Image 4 (Right) */}
+                        <div className="absolute top-[180vh] right-[8%] md:right-[15%] w-[40%] md:w-[35%] lg:w-[28%] flex flex-col">
+                            <div className="w-full aspect-[4/3] bg-slate-100 rounded-none overflow-hidden border border-white/10 shadow-sm">
+                                <img src={doctor3Img} alt="Evening Sunset" className="w-full h-full object-cover transform transition-transform duration-[2s] hover:scale-110" />
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </section>
