@@ -21,6 +21,7 @@ import community4Img from '../assets/community-4.jpg';
 
 export const Landing = () => {
     const philosophySectionRef = useRef(null);
+    const expertsCarouselRef = useRef(null);
     const testimonialsRef = useRef(null);
     const communityCardsRef = useRef(null);
     const discoverSectionRef = useRef(null);
@@ -101,6 +102,16 @@ export const Landing = () => {
     ];
 
 
+
+    const scrollExperts = (direction) => {
+        if (expertsCarouselRef.current) {
+            const scrollAmount = 450; // card w-[420px] + gap-8 [32px]
+            expertsCarouselRef.current.scrollBy({
+                left: direction === 'left' ? -scrollAmount : scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    };
 
     // Discover Section GSAP text animations removed as per request (text stays static while images scroll)
 
@@ -243,24 +254,46 @@ export const Landing = () => {
                 </header>
             </div>
 
-            <section ref={philosophySectionRef} className="py-24 lg:py-32 bg-white">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 mb-20">
-                    <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-8 text-[#1A2530]">ABOUT US</span>
-                    <h2 className="text-4xl md:text-5xl lg:text-[56px] font-normal text-primary leading-[1.1] tracking-tight max-w-5xl">
-                        Premium healthcare should be effortless. We<br className="hidden lg:block" /> remove the friction, leaving only clarity, precision,<br className="hidden lg:block" /> and profound care.
-                    </h2>
-                </div>
-                <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 items-center">
-                    <div className="w-full lg:w-[60%] pl-0">
-                        <div className="w-full aspect-[16/10] bg-slate-100 overflow-hidden">
-                            <img alt="Doctor consultation" className="w-full h-full object-cover" src={community1Img} />
-                        </div>
+            <section ref={philosophySectionRef} className="py-32 lg:py-48 bg-white">
+                <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
+                    <div className="mb-20">
+                        <span className="text-accent text-xs font-normal tracking-[0.3em] uppercase block mb-4">Our Philosophy</span>
+                        <ScrollReveal
+                            as="h2"
+                            baseRotation={2}
+                            blurStrength={8}
+                            containerClassName="max-w-5xl"
+                            textClassName="font-sans text-5xl md:text-6xl lg:text-7xl font-normal text-primary leading-[1.1] tracking-tight inline-block"
+                            start="top 90%"
+                            end="bottom 40%"
+                        >
+                            {'True luxury is the absence of friction. '}
+                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-emerald-500 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
+                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">workspace_premium</span>
+                            </span>
+                            {' We strip away the unnecessary, '}
+                            <span className="inline-flex items-center justify-center w-[80px] h-[50px] md:w-[100px] md:h-[60px] bg-blue-600 rounded-full text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3">
+                                <span className="material-symbols-outlined text-[28px] md:text-[36px]">filter_alt</span>
+                            </span>
+                            {' leaving only clarity, precision, '}
+                            <span className="inline-flex items-center justify-center w-[60px] h-[60px] md:w-[72px] md:h-[72px] bg-rose-500 rounded-[20px] md:rounded-[24px] text-white shadow-xl align-middle transform -translate-y-2 lg:-translate-y-3 rotate-6">
+                                <span className="material-symbols-outlined text-[32px] md:text-[40px]">favorite</span>
+                            </span>
+                            {' and profound care.'}
+                        </ScrollReveal>
                     </div>
-                    <div className="w-full lg:w-[40%] px-8 lg:px-0 lg:pr-16 flex justify-start">
-                        <div className="max-w-sm">
-                            <p className="text-lg text-[#4A5D53] font-normal leading-relaxed">
-                                Our clinics combine advanced technology with an atmosphere of tranquility. We believe that true wellbeing starts the moment you walk through our doors.
-                            </p>
+                    <div className="flex flex-col lg:flex-row gap-12 items-end">
+                        <div className="w-full lg:w-3/4">
+                            <div className="rounded-[2rem] overflow-hidden aspect-[16/9] shadow-2xl">
+                                <img alt="World-class medical team in a luxury clinical setting" className="w-full h-full object-cover" src={aboutImg} />
+                            </div>
+                        </div>
+                        <div className="w-full lg:w-1/4 pb-4">
+                            <div className="max-w-xs">
+                                <p className="text-base lg:text-lg text-slate-600 font-normal leading-relaxed">
+                                    The Art of Subtraction. Saha Medical was born from a vision to simplify healthcare and make it seamless for the world's most discerning individuals. By removing administrative complexity, we return your most valuable asset: time.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -370,83 +403,151 @@ export const Landing = () => {
                 </div>
             </section>
 
-            <section className="py-24 lg:py-32 bg-white">
+            <section className="py-32 lg:py-48 bg-white overflow-hidden">
                 <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
-                    <div className="text-center mb-20">
-                        <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">OUR DOCTORS</span>
-                        <h2 className="text-4xl lg:text-5xl font-normal text-primary tracking-tight mb-6">Meet Our Specialists</h2>
-                        <p className="text-[#4A5D53] text-lg max-w-2xl mx-auto">
-                            Read the backgrounds and expertise of our medical minds, hand-picked from the most prestigious medical institutions worldwide.
-                        </p>
+                    <div className="flex justify-between items-end mb-16">
+                        <div>
+                            <h2 className="text-5xl md:text-7xl font-normal text-primary tracking-tight leading-[1.1]">Our Experts</h2>
+                        </div>
+                        <div className="flex gap-4">
+                            <button onClick={() => scrollExperts('left')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
+                                <span className="material-symbols-outlined">chevron_left</span>
+                            </button>
+                            <button onClick={() => scrollExperts('right')} className="w-14 h-14 rounded-full border border-hero-blue text-hero-blue flex items-center justify-center hover:bg-hero-blue hover:text-white transition-all">
+                                <span className="material-symbols-outlined">chevron_right</span>
+                            </button>
+                        </div>
                     </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
-                            <img alt="Dr. Tariq Al-Fayed" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor1Img} />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 right-6">
-                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Tariq Al-Fayed</h3>
-                                <p className="text-white/80 text-sm font-normal">Senior Cardiologist</p>
+                    <div ref={expertsCarouselRef} className="flex overflow-x-auto gap-8 pb-12 no-scrollbar scroll-smooth snap-x snap-mandatory -mx-8 px-8 lg:-mx-16 lg:px-16">
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Tariq Al-Fayed" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor1Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Tariq Al-Fayed</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Senior Cardiologist</p>
+                            </div>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Tariq Al-Fayed" className="w-full h-full object-cover" src={doctor1Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Tariq Al-Fayed</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Senior Cardiologist</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    World-renowned specialist with over 20 years of experience in preventative cardiovascular medicine and longevity science.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 28</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Cardiology</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
-                            <img alt="Dr. Yasmin Mansour" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor2Img} />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 right-6">
-                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Yasmin Mansour</h3>
-                                <p className="text-white/80 text-sm font-normal">Neurology Director</p>
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Yasmin Mansour" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor2Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Yasmin Mansour</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Neurology Director</p>
+                            </div>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Yasmin Mansour" className="w-full h-full object-cover" src={doctor2Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Yasmin Mansour</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Neurology Director</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Pioneer in neuro-regenerative therapies and cognitive optimization, specializing in early detection and prevention protocols.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 02</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Neurology</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
-                            <img alt="Dr. Kareem Hassan" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor3Img} />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 right-6">
-                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Kareem Hassan</h3>
-                                <p className="text-white/80 text-sm font-normal">Integrative Medicine</p>
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Kareem Hassan" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor3Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Kareem Hassan</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Integrative Medicine</p>
+                            </div>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Kareem Hassan" className="w-full h-full object-cover" src={doctor3Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Kareem Hassan</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Integrative Medicine</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Expert in holistic wellness and hormonal optimization, focusing on personalized biological protocols for high-performance individuals.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">March 25</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Integrative</span>
+                                </div>
                             </div>
                         </div>
 
-                        <div className="relative group w-full aspect-[3/4] md:aspect-auto md:h-[500px] lg:h-[600px] bg-slate-100 overflow-hidden shadow-sm">
-                            <img alt="Dr. Layla Rahman" className="absolute inset-0 w-full h-full object-cover transition-transform duration-[1500ms] group-hover:scale-105" src={doctor4Img} />
-                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 via-black/30 to-transparent"></div>
-                            <div className="absolute bottom-6 left-6 right-6">
-                                <h3 className="text-xl font-semibold text-white tracking-tight mb-1">Dr. Layla Rahman</h3>
-                                <p className="text-white/80 text-sm font-normal">Genetic Specialist</p>
+                        <div className="flex-none w-[340px] md:w-[420px] h-[550px] relative group rounded-[40px] overflow-hidden snap-start shadow-xl">
+                            {/* Base full image */}
+                            <img alt="Dr. Layla Rahman" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src={doctor4Img} />
+                            <div className="absolute inset-0 bg-primary/20 group-hover:bg-transparent transition-colors duration-500"></div>
+                            {/* Name label at bottom (default view) */}
+                            <div className="absolute bottom-10 left-10 transition-opacity duration-300 group-hover:opacity-0">
+                                <h3 className="text-3xl font-bold text-white mb-1 drop-shadow-md">Dr. Layla Rahman</h3>
+                                <p className="text-white/90 font-medium drop-shadow-md">Genetic Specialist</p>
+                            </div>
+                            {/* Hover Details Overlay */}
+                            <div className="absolute inset-0 bg-card-grey p-10 flex flex-col items-center text-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10">
+                                <div className="w-40 h-40 rounded-full overflow-hidden mb-8 shadow-lg transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500">
+                                    <img alt="Dr. Layla Rahman" className="w-full h-full object-cover" src={doctor4Img} />
+                                </div>
+                                <h3 className="text-2xl font-bold text-primary mb-2 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-75">Dr. Layla Rahman</h3>
+                                <p className="text-lg text-slate-500 mb-6 font-normal transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-100">Genetic Specialist</p>
+                                <p className="text-base text-slate-600 leading-relaxed mb-10 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-150">
+                                    Leading the frontier of genomic diagnostics and CRISPR-based preventative assessments for generational health planning.
+                                </p>
+                                <div className="flex flex-wrap justify-center gap-3 mt-auto transform translate-y-8 group-hover:translate-y-0 transition-transform duration-500 delay-200">
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">April 10</span>
+                                    <span className="bg-pill-blue text-text-pill-blue px-6 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider">Genomics</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <section className="py-24 lg:py-32 bg-[#F8F9FA] overflow-hidden">
-                <div className="max-w-[1440px] mx-auto px-8 lg:px-16 text-center mb-16">
-                    <span className="text-secondary text-sm font-semibold tracking-[0.2em] uppercase block mb-6 text-[#1A2530]">TESTIMONIALS</span>
-                    <h2 className="text-4xl lg:text-5xl font-normal text-primary tracking-tight">What Our Patients Say</h2>
-                </div>
+            <section className="py-32 lg:py-48 bg-white overflow-hidden">
+                <div className="max-w-[1440px] mx-auto px-8 lg:px-16">
+                    <h2 className="text-5xl md:text-6xl font-normal text-primary mb-20 tracking-tight">What Our Clients Say</h2>
 
-                <div className="relative flex overflow-hidden group">
-                    <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-6 pb-12 px-6">
-                        {/* Render Array Twice for Infinite Looping Marquee */}
-                        {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
-                            <div key={idx} className="flex-none w-[350px] md:w-[420px] bg-white border border-slate-100 shadow-sm p-10 flex flex-col justify-between min-h-[380px] hover:shadow-md transition-shadow duration-300">
-                                <div className="mb-8">
-                                    <div className="flex text-[#0F172A] mb-6">
-                                        {[...Array(5)].map((_, i) => (
-                                            <span key={i} className="material-symbols-outlined text-[18px]">star</span>
-                                        ))}
-                                    </div>
-                                    <p className="text-lg font-normal text-[#4A5D53] leading-relaxed">
+                    <div className="relative flex overflow-hidden group -mx-8 px-8 lg:-mx-16 lg:px-16">
+                        <div className="flex w-max animate-marquee hover:[animation-play-state:paused] gap-8 pb-12">
+                            {/* Render Array Twice for Infinite Looping Marquee */}
+                            {[...testimonialsData, ...testimonialsData].map((testimonial, idx) => (
+                                <div key={idx} className="flex-none w-[380px] md:w-[450px] bg-card-grey rounded-[32px] p-12 flex flex-col justify-between min-h-[500px] hover:-translate-y-2 transition-transform duration-300">
+                                    <p className="text-3xl md:text-4xl font-normal text-primary leading-tight tracking-tight">
                                         "{testimonial.quote}"
                                     </p>
+                                    <div className="flex items-center gap-5 mt-10">
+                                        <img alt={testimonial.name} className="w-14 h-14 rounded-full object-cover border border-white shadow-sm" src={testimonial.image} />
+                                        <div>
+                                            <h4 className="text-lg font-normal text-primary">{testimonial.name}</h4>
+                                            <p className="text-sm font-normal text-slate-500">{testimonial.location}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div>
-                                    <h4 className="text-base font-semibold text-[#0F172A]">{testimonial.name}</h4>
-                                    <p className="text-sm font-normal text-slate-500">{testimonial.location}</p>
-                                </div>
-                            </div>
-                        ))}
+                            ))}
+                        </div>
                     </div>
                 </div>
             </section>
